@@ -18,7 +18,7 @@ namespace Suteki.TardisBank.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult Execute(string id)
         {
             if (id == null || configuration.ScheduleKey != id) return StatusCode.NotFound;

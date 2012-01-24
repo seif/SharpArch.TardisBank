@@ -43,7 +43,7 @@ namespace Suteki.TardisBank.Controllers
             };
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
             return RegisterInternal(registrationViewModel, "Sorry, that email address has already been registered.",
@@ -111,7 +111,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Confirm");
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult Activate(string id)
         {
             // id is the activation key
@@ -135,7 +135,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Login", loginViewModel);
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             if (loginViewModel == null)
@@ -203,7 +203,7 @@ namespace Suteki.TardisBank.Controllers
             return View("AddChild", GetRegistrationViewModel());
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult AddChild(RegistrationViewModel registrationViewModel)
         {
             var parent = userService.CurrentUser as Parent;
@@ -231,7 +231,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Messages", user);
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult ReadMessage(int id)
         {
             var user = userService.CurrentUser;

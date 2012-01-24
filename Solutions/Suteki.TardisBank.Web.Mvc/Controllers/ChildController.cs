@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult DeleteChild(DeleteChildConfirmViewModel deleteChildConfirmViewModel)
         {
             var parent = userService.CurrentUser as Parent;

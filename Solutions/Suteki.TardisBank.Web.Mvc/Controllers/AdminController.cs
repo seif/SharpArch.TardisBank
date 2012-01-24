@@ -30,7 +30,7 @@ namespace Suteki.TardisBank.Controllers
             return View();
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult DeleteParent()
         {
             var parent = userService.CurrentUser as Parent;
@@ -54,7 +54,7 @@ namespace Suteki.TardisBank.Controllers
             return View();
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
 

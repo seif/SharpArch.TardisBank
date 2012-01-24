@@ -29,7 +29,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult Forgot(ForgottenPasswordViewModel forgottenPasswordViewModel)
         {
             if (!ModelState.IsValid) return View("Forgot", forgottenPasswordViewModel);

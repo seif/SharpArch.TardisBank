@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Login");
         }
 
-        [ValidateInput(false), UnitOfWork]
+        [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
             var response = openIdService.GetResponse();

@@ -40,7 +40,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult MakePayment(MakePaymentViewModel makePaymentViewModel)
         {
             if (!ModelState.IsValid) return View("MakePayment", makePaymentViewModel);
@@ -111,7 +111,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult WithdrawCash(WithdrawCashViewModel withdrawCashViewModel)
         {
             if (!ModelState.IsValid) return View("WithdrawCash", withdrawCashViewModel);
@@ -176,7 +176,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult WithdrawCashForChild(WithdrawCashForChildViewModel withdrawCashForChildViewModel)
         {
             if (!ModelState.IsValid) return View(withdrawCashForChildViewModel);

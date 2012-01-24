@@ -55,6 +55,9 @@
     <Reference Include="CommonServiceLocator.WindsorAdapter">
       <HintPath>..\..\Packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenAuth, Version=3.4.7.11121, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\DotNetOpenAuth.3.4.7.11121\lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.3.0.717, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -145,8 +148,29 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AnalyticsController.cs" />
+    <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OpenidController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\RouteRegistrar.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\ScheduleRunnerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ViewModels\AccountSummaryViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\AddScheduleViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\DeleteChildConfirmViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\ForgottenPasswordViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\MakePaymentViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\UserViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\WithdrawCashForChildViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\WithdrawCashViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,7 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Queries\" />
-    <Folder Include="Controllers\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
