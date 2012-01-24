@@ -90,7 +90,17 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="MyEntity1.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="Child.cs" />
+    <Compile Include="Events\NewParentCreatedEvent.cs" />
+    <Compile Include="Events\SendMessageEvent.cs" />
+    <Compile Include="Interval.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Parent.cs" />
+    <Compile Include="PaymentSchedule.cs" />
+    <Compile Include="TardisBankException.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

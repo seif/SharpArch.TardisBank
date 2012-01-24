@@ -5,6 +5,8 @@ using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
+    using SharpArch.Domain.Events;
+
     public abstract class User
     {
         public const int MaxMessages = 20;
@@ -37,7 +39,7 @@ namespace Suteki.TardisBank.Model
             Messages.Add(new Message(nextId, DateTime.Now.Date, text));
             RemoveOldMessages();
 
-            DomainEvent.Raise(new SendMessageEvent(this, text));
+            DomainEvents.Raise(new SendMessageEvent(this, text));
         }
 
         void RemoveOldMessages()

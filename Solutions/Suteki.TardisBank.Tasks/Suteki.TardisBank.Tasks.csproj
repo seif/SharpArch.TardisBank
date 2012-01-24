@@ -92,6 +92,14 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="EmailService.cs" />
+    <Compile Include="EventHandlers\SendMessageEmailHandler.cs" />
+    <Compile Include="EventHandlers\SendRegistrationEmailHandler.cs" />
+    <Compile Include="FormsAuthenticationService.cs" />
+    <Compile Include="HttpContextService.cs" />
+    <Compile Include="OpenIdService.cs" />
+    <Compile Include="SchedulerService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Suteki.TardisBank.Domain\Suteki.TardisBank.Domain.csproj">

@@ -3,6 +3,8 @@ using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Events
 {
+    using SharpArch.Domain.Events;
+
     public class SendMessageEvent : IDomainEvent
     {
         public User User { get; private set; }

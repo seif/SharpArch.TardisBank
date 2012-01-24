@@ -150,11 +150,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Current.cs" />
+    <Compile Include="Utilities\DateFormatter.cs" />
+    <Compile Include="Utilities\StatusCode.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\UserLocaleModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404Error.htm" />
     <Content Include="Content\img\sharp_arch.jpg" />
     <Content Include="Content\img\sharp_arch_small.gif" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="favicon.png" />
+    <Content Include="GenericError.htm" />
     <Content Include="Global.asax" />
     <Content Include="Content\js\jquery-1.6.3-vsdoc.js" />
     <Content Include="Content\js\jquery-1.6.3.js" />
@@ -193,6 +202,44 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\MakePayment.cshtml" />
+    <Content Include="Views\Account\PaymentConfirmation.cshtml" />
+    <Content Include="Views\Account\Summary.cshtml" />
+    <Content Include="Views\Account\WithdrawCash.cshtml" />
+    <Content Include="Views\Account\WithdrawCashConfirm.cshtml" />
+    <Content Include="Views\Account\WithdrawCashForChild.cshtml" />
+    <Content Include="Views\Account\WithdrawCashForChildConfirm.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\DeleteParentConfirm.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Analytics\Index.cshtml" />
+    <Content Include="Views\Child\DeleteChild.cshtml" />
+    <Content Include="Views\Child\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\ChildMenu.cshtml" />
+    <Content Include="Views\Menu\GuestMenu.cshtml" />
+    <Content Include="Views\Menu\ParentMenu.cshtml" />
+    <Content Include="Views\Openid\Index.cshtml" />
+    <Content Include="Views\Openid\Login.cshtml" />
+    <Content Include="Views\Password\ChildConfirm.cshtml" />
+    <Content Include="Views\Password\Forgot.cshtml" />
+    <Content Include="Views\Password\ParentConfirm.cshtml" />
+    <Content Include="Views\Schedule\AddSchedule.cshtml" />
+    <Content Include="Views\Schedule\AddScheduleConfirm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\ActivateConfirm.cshtml" />
+    <Content Include="Views\User\ActivationFailed.cshtml" />
+    <Content Include="Views\User\AddChild.cshtml" />
+    <Content Include="Views\User\Confirm.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Messages.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

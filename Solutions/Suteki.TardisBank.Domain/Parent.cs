@@ -5,6 +5,8 @@ using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
+    using SharpArch.Domain.Events;
+
     public class Parent : User
     {
         public IList<ChildProxy> Children { get; private set; }
@@ -19,7 +21,7 @@ namespace Suteki.TardisBank.Model
         public Parent Initialise()
         {
             ActivationKey = Guid.NewGuid().ToString();
-            DomainEvent.Raise(new NewParentCreatedEvent(this));
+            DomainEvents.Raise(new NewParentCreatedEvent(this));
             return this;
         }
 

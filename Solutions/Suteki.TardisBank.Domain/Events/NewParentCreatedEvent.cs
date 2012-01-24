@@ -3,6 +3,8 @@ using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Events
 {
+    using SharpArch.Domain.Events;
+
     public class NewParentCreatedEvent : IDomainEvent
     {
         public NewParentCreatedEvent(Parent parent)
