@@ -1,10 +1,11 @@
 using System;
 using System.Net;
 using System.Net.Mail;
-using Suteki.TardisBank.IoC;
 
 namespace Suteki.TardisBank.Services
 {
+    using Suteki.TardisBank.IoC;
+
     public interface IEmailService
     {
         void SendEmail(string toAddress, string subject, string body);

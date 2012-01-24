@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Raven.Client;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Services
@@ -22,12 +21,10 @@ namespace Suteki.TardisBank.Services
 
     public class UserService : IUserService
     {
-        readonly IDocumentSession session;
         readonly IHttpContextService context;
 
-        public UserService(IDocumentSession session, IHttpContextService context)
+        public UserService(IHttpContextService context)
         {
-            this.session = session;
             this.context = context;
         }
 
@@ -37,7 +34,9 @@ namespace Suteki.TardisBank.Services
             {
                 if (!context.UserIsAuthenticated) return null;
                 var userId = string.Format("users/{0}", context.UserName);
-                return session.Load<User>(userId);
+
+                // TODO return user
+                throw new NotImplementedException("Just build for now.");
             }
         }
 
@@ -48,7 +47,8 @@ namespace Suteki.TardisBank.Services
                 throw new ArgumentNullException("userId");
             }
 
-            return session.Load<User>(userId);
+            // TODO return user
+            throw new NotImplementedException("Just build for now.");
         }
 
         public User GetUserByUserName(string userName)
@@ -57,8 +57,9 @@ namespace Suteki.TardisBank.Services
             {
                 throw new ArgumentNullException("userName");
             }
-
-            return session.Load<User>(User.UserIdFromUserName(userName));
+            
+            // TODO return user
+            throw new NotImplementedException("Just build for now.");
         }
 
         public User GetUserByActivationKey(string activationKey)
@@ -68,7 +69,9 @@ namespace Suteki.TardisBank.Services
                 throw new ArgumentNullException("activationKey");
             }
 
-            return session.Query<Parent>().Where(x => x.ActivationKey == activationKey).SingleOrDefault();
+            //return session.Query<Parent>().Where(x => x.ActivationKey == activationKey).SingleOrDefault();
+            // TODO return user
+            throw new NotImplementedException("Just build for now.");
         }
 
         public void SaveUser(User user)
@@ -77,8 +80,8 @@ namespace Suteki.TardisBank.Services
             {
                 throw new ArgumentNullException("user");
             }
-
-            session.Store(user);
+            
+            // TODO save user
         }
 
         public IEnumerable<Child> GetChildrenOf(Parent parent)
@@ -88,8 +91,8 @@ namespace Suteki.TardisBank.Services
                 throw new ArgumentNullException("parent");
             }
 
-            var childIds = parent.Children.Select(x => x.ChildId).ToArray();
-            return session.Load<Child>(childIds).AsEnumerable();
+            // TODO
+            throw new NotImplementedException("Just build for now.");
         }
 
         public bool AreNullOrNotRelated(Parent parent, Child child)
@@ -112,7 +115,7 @@ namespace Suteki.TardisBank.Services
 
         public void DeleteUser(string userId)
         {
-            session.Advanced.DatabaseCommands.Delete(userId, null);            
+            //TODO
         }
     }
 }

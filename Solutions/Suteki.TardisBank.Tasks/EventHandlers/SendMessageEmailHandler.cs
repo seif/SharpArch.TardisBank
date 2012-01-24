@@ -5,7 +5,9 @@ using Suteki.TardisBank.Services;
 
 namespace Suteki.TardisBank.Handlers
 {
-    public class SendMessageEmailHandler : IHandle<SendMessageEvent>
+    using SharpArch.Domain.Events;
+
+    public class SendMessageEmailHandler : IHandles<SendMessageEvent>
     {
         readonly IEmailService emailService;
 

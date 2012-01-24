@@ -6,13 +6,13 @@
 
     using Conventions;
 
-    using Domain;
-
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Conventions;
 
     using SharpArch.Domain.DomainModel;
     using SharpArch.NHibernate.FluentNHibernate;
+
+    using Suteki.TardisBank.Model;
 
     #endregion
 
@@ -23,7 +23,7 @@
     {
         public AutoPersistenceModel Generate()
         {
-            var mappings = AutoMap.AssemblyOf<MyEntity1>(new AutomappingConfiguration());
+            var mappings = AutoMap.AssemblyOf<Child>(new AutomappingConfiguration());
             mappings.IgnoreBase<Entity>();
             mappings.IgnoreBase(typeof(EntityWithTypedId<>));
             mappings.Conventions.Setup(GetConventions());

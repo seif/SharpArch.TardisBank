@@ -15,7 +15,9 @@
     using Controllers;
     
     using Infrastructure.NHibernateMaps;
-    
+
+    using Suteki.TardisBank.Controllers;
+
     using log4net.Config;
     
     using Microsoft.Practices.ServiceLocation;

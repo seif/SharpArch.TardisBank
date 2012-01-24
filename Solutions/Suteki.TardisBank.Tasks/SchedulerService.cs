@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Raven.Client;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Services
@@ -11,12 +10,9 @@ namespace Suteki.TardisBank.Services
     }
 
     public class SchedulerService : ISchedulerService
-    {
-        readonly IDocumentSession session;
-
-        public SchedulerService(IDocumentSession session)
+    {   
+        public SchedulerService()
         {
-            this.session = session;
         }
 
         /// <summary>
@@ -24,16 +20,7 @@ namespace Suteki.TardisBank.Services
         /// </summary>
         public void ExecuteUpdates(DateTime now)
         {
-            // query is defined in this class: Suteki.TardisBank.Indexes.Child_ByPendingSchedule
-            var results = session.Advanced
-                .LuceneQuery<Child>("Child/ByPendingSchedule")
-                .WhereLessThanOrEqual("NextRun", now)
-                .WaitForNonStaleResults().ToList();
-
-            foreach (var child in results)
-            {
-                child.Account.TriggerScheduledPayments(now);
-            }
+            //TODO implement query Child/ByPendingSchedule .WhereLessThanOrEqual("NextRun", now)
         }
     }
 }

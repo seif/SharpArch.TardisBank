@@ -2,12 +2,6 @@ using System.Web;
 
 namespace Suteki.TardisBank.Services
 {
-    public interface IHttpContextService
-    {
-        string UserName { get; }
-        bool UserIsAuthenticated { get; }
-    }
-
     public class HttpContextService : IHttpContextService
     {
         public string UserName

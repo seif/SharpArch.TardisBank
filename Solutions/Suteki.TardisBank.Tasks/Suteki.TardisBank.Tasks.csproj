@@ -65,6 +65,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetOpenAuth">
+      <HintPath>..\..\Packages\DotNetOpenAuth.3.4.7.11121\lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\Packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -95,10 +98,10 @@
     <Compile Include="EmailService.cs" />
     <Compile Include="EventHandlers\SendMessageEmailHandler.cs" />
     <Compile Include="EventHandlers\SendRegistrationEmailHandler.cs" />
-    <Compile Include="FormsAuthenticationService.cs" />
-    <Compile Include="HttpContextService.cs" />
+    <Compile Include="IHttpContextService.cs" />
     <Compile Include="OpenIdService.cs" />
     <Compile Include="SchedulerService.cs" />
+    <Compile Include="TardisConfiguration.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>

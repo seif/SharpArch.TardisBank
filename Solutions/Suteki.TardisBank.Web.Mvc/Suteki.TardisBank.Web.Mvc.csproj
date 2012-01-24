@@ -152,6 +152,8 @@
     </Compile>
     <Compile Include="Utilities\Current.cs" />
     <Compile Include="Utilities\DateFormatter.cs" />
+    <Compile Include="Utilities\FormsAuthenticationService.cs" />
+    <Compile Include="Utilities\HttpContextService.cs" />
     <Compile Include="Utilities\StatusCode.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\UserLocaleModule.cs" />
