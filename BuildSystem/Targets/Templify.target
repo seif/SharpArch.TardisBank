@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="All">
+
+  <PropertyGroup>
+    <TemplifyWorkingPath>$(DropsPath)\Temp$(GlobalBuildVersionNumber)</TemplifyWorkingPath>
+  </PropertyGroup>
+  
+  <Target Name="Templify">
+
+    <Message Text="Templifying with:
+  Author=$(TemplifyPackageAuthor)
+  Name=$(TemplifyPackageName)
+  PackageRepositoryPath=$(DropsPath)\$(GlobalBuildVersionNumber)
+  PackageRepositoryWorkingPath=$(TemplifyWorkingPath)
+  Path=$(SolutionsPath)
+  Tokens=@(TemplifyTokens)
+  Version=$(GlobalBuildVersionNumber)" />
+
+    <MakeDir Directories="$(TemplifyWorkingPath)" />
+    
+    <CreatePackage Author="$(TemplifyPackageAuthor)"
+                   Name="$(TemplifyPackageName)"
+                   PackageRepositoryPath="$(DropsPath)\$(GlobalBuildVersionNumber)"
+                   PackageRepositoryWorkingPath="$(TemplifyWorkingPath)"
+                   Path="$(SolutionsPath)"
+                   Tokens="@(TemplifyTokens)"
+                   Version="$(GlobalBuildVersionNumber)" 
+                   ContinueOnError="true" />
+
+    <Message Text="##teamcity[publishArtifacts '$(DropsPath)\$(GlobalBuildVersionNumber)\*.pkg']"  />
+
+    <RemoveDir Directories="$(TemplifyWorkingPath)" />
+    
+  </Target>
+
+</Project>
