@@ -4,16 +4,18 @@ using Castle.Windsor;
 
 namespace Suteki.TardisBank.IoC
 {
-    public class ServicesInstaller : IWindsorInstaller
+    using Suteki.TardisBank.Services;
+
+    public class TasksInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 AllTypes
-                    .FromThisAssembly()
-                    .Where(Component.IsInNamespace("Suteki.TardisBank.Services"))
-                    .WithService.DefaultInterface()
-                    .Configure(c => c.LifeStyle.Transient)
+                    .FromAssemblyContaining<UserService>()
+                    .Where(Component.IsInSameNamespaceAs<UserService>())
+                    .WithService.DefaultInterfaces()
+                    .Configure(c => c.LifestyleTransient())
                 );
         }
     }

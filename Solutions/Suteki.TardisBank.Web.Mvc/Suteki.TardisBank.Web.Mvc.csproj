@@ -147,7 +147,13 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="CastleWindsor\SharpArchInstaller.cs" />
+    <Compile Include="CastleWindsor\ControllersInstaller.cs" />
+    <Compile Include="CastleWindsor\RepositoriesInstaller.cs" />
+    <Compile Include="CastleWindsor\QueriesInstaller.cs" />
+    <Compile Include="CastleWindsor\HandlerInstaller.cs" />
+    <Compile Include="CastleWindsor\MvcGooInstaller.cs" />
+    <Compile Include="CastleWindsor\ServicesInstaller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
@@ -184,9 +190,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404Error.htm" />
+    <Content Include="Content\960.css" />
+    <Content Include="Content\images\hover.gif" />
+    <Content Include="Content\images\meandleo.jpg" />
+    <Content Include="Content\images\meandleo.png" />
+    <Content Include="Content\images\seperator.gif" />
+    <Content Include="Content\images\TardisBankLogo_128.png" />
+    <Content Include="Content\images\TardisBankLogo_16.png" />
+    <Content Include="Content\images\TardisBankLogo_32.png" />
+    <Content Include="Content\images\TardisBankLogo_64.png" />
+    <Content Include="Content\images\TardisBankLogo_75.png" />
+    <Content Include="Content\images\TardisBankLogo_Shadow.png" />
+    <Content Include="Content\images\TardisBankLogo_ShadowWhite.png" />
+    <Content Include="Content\images\title_background.png" />
     <Content Include="Content\img\sharp_arch.jpg" />
     <Content Include="Content\img\sharp_arch_small.gif" />
+    <Content Include="Content\menu_style.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\text.css" />
     <Content Include="favicon.ico" />
     <Content Include="favicon.png" />
     <Content Include="GenericError.htm" />
@@ -265,6 +287,9 @@
     <Content Include="Views\User\Messages.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\images\Thumbs.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

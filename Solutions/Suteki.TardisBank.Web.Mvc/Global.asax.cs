@@ -8,6 +8,8 @@
     using Castle.Windsor;
 
     // Suteki.TardisBank.Web.Mvc.CastleWindsor
+    using Castle.Windsor.Installer;
+
     using CastleWindsor;
 
     using CommonServiceLocator.WindsorAdapter;
@@ -89,11 +91,9 @@
         protected virtual void InitializeServiceLocator() 
         {
             IWindsorContainer container = new WindsorContainer();
+            container.Install(FromAssembly.This());
 
             ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
-
-            container.RegisterControllers(typeof(HomeController).Assembly);
-            ComponentRegistrar.AddComponentsTo(container);
 
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }
