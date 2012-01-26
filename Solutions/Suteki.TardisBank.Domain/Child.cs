@@ -5,14 +5,14 @@ namespace Suteki.TardisBank.Model
 {
     public class Child : User
     {
-        public Child(string name, string userName, string password, string parentId) : base(name, userName, password)
+        public Child(string name, string userName, string password, int parentId) : base(name, userName, password)
         {
             ParentId = parentId;
             Account = new Account();
             IsActive = true;
         }
 
-        public string ParentId { get; set; }
+        public int ParentId { get; set; }
         public Account Account { get; set; }
 
         public void ReceivePayment(decimal amount, string description)

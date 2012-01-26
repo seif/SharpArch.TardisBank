@@ -2,11 +2,12 @@ using System;
 
 namespace Suteki.TardisBank.Model
 {
-    public class Message
+    using SharpArch.Domain.DomainModel;
+
+    public class Message : Entity
     {
-        public Message(int id, DateTime date, string text)
+        public Message(DateTime date, string text)
         {
-            Id = id;
             Date = date;
             Text = text;
             HasBeenRead = false;
@@ -17,7 +18,6 @@ namespace Suteki.TardisBank.Model
             HasBeenRead = true;
         }
 
-        public int Id { get; private set; }
         public DateTime Date { get; private set; }
         public string Text { get; private set; }
         public bool HasBeenRead { get; private set; }

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 namespace Suteki.TardisBank.Model
 {
-    public class Account
+    using SharpArch.Domain.DomainModel;
+
+    public class Account : Entity
     {
         public const int MaxTransactions = 100;
         public decimal OldTransactionsBalance { get; private set; }
@@ -43,8 +45,7 @@ namespace Suteki.TardisBank.Model
 
         public void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
         {
-            var nextId = PaymentSchedules.Any() ? PaymentSchedules.Max(x => x.Id) + 1 : 0;
-            PaymentSchedules.Add(new PaymentSchedule(nextId, startDate, interval, amount, description));
+            PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description));
         }
 
         public void TriggerScheduledPayments(DateTime now)

@@ -8,11 +8,12 @@ namespace Suteki.TardisBank.Services
     public interface IUserService
     {
         User CurrentUser { get; }
-        User GetUser(string userId);
+        User GetUser(int userId);
         User GetUserByUserName(string userName);
-        User GetUserByActivationKey(string activationKey);
+        User GetUserById(int id);
+        User GetUserByActivationKey(int activationKey);
         void SaveUser(User user);
-        void DeleteUser(string userId);
+        void DeleteUser(int userId);
         IEnumerable<Child> GetChildrenOf(Parent parent);
 
         bool AreNullOrNotRelated(Parent parent, Child child);
@@ -40,7 +41,7 @@ namespace Suteki.TardisBank.Services
             }
         }
 
-        public User GetUser(string userId)
+        public User GetUser(int userId)
         {
             if (userId == null)
             {
@@ -62,7 +63,12 @@ namespace Suteki.TardisBank.Services
             throw new NotImplementedException("Just build for now.");
         }
 
-        public User GetUserByActivationKey(string activationKey)
+        public User GetUserById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUserByActivationKey(int activationKey)
         {
             if (activationKey == null)
             {
@@ -113,7 +119,7 @@ namespace Suteki.TardisBank.Services
             return (child == null) || (parent == null) || (!parent.HasChild(child));
         }
 
-        public void DeleteUser(string userId)
+        public void DeleteUser(int userId)
         {
             //TODO
         }

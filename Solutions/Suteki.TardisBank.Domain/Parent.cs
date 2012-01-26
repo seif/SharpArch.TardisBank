@@ -5,6 +5,7 @@ using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
+    using SharpArch.Domain.DomainModel;
     using SharpArch.Domain.Events;
 
     public class Parent : User
@@ -58,12 +59,12 @@ namespace Suteki.TardisBank.Model
             base.Activate();
         }
 
-        public bool HasChild(string childId)
+        public bool HasChild(int childId)
         {
             return Children.Any(x => x.ChildId == childId);
         }
 
-        public void RemoveChild(string childId)
+        public void RemoveChild(int childId)
         {
             var childToRemove = Children.SingleOrDefault(x => x.ChildId == childId);
             if (childToRemove != null)
@@ -73,15 +74,15 @@ namespace Suteki.TardisBank.Model
         }
     }
 
-    public class ChildProxy
+    public class ChildProxy : Entity
     {
-        public ChildProxy(string childId, string name)
+        public ChildProxy(int childId, string name)
         {
             ChildId = childId;
             Name = name;
         }
 
-        public string ChildId { get; private set; }
+        public int ChildId { get; private set; }
         public string Name { get; private set; }
     }
 }

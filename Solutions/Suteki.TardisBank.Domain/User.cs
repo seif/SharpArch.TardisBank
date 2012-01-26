@@ -5,13 +5,13 @@ using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
+    using SharpArch.Domain.DomainModel;
     using SharpArch.Domain.Events;
 
-    public abstract class User
+    public abstract class User : Entity
     {
         public const int MaxMessages = 20;
 
-        public string Id { get; private set; }
         public string Name { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -20,7 +20,6 @@ namespace Suteki.TardisBank.Model
 
         protected User(string name, string userName, string password)
         {
-            Id = UserIdFromUserName(userName);
             Name = name;
             UserName = userName;
             Password = password;
@@ -28,15 +27,9 @@ namespace Suteki.TardisBank.Model
             IsActive = false;
         }
 
-        public static string UserIdFromUserName(string userName)
-        {
-            return string.Format("users/{0}", userName);
-        }
-
         public void SendMessage(string text)
         {
-            var nextId = Messages.Count == 0 ? 0 : Messages.Max(x => x.Id) + 1;
-            Messages.Add(new Message(nextId, DateTime.Now.Date, text));
+            Messages.Add(new Message(DateTime.Now.Date, text));
             RemoveOldMessages();
 
             DomainEvents.Raise(new SendMessageEvent(this, text));

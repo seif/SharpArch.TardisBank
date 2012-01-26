@@ -18,7 +18,7 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult MakePayment(string id)
+        public ActionResult MakePayment(int id)
         {
             // id is the child's user name
             if (id == null)
@@ -27,13 +27,13 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserByUserName(id) as Child;
+            var child = userService.GetUserById(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
             return View("MakePayment", new MakePaymentViewModel
             {
-                ChildId = child.UserName,
+                ChildId = child.Id,
                 ChildName = child.Name,
                 Description = "",
                 Amount = 0M
@@ -56,7 +56,7 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserByUserName(makePaymentViewModel.ChildId) as Child;
+            var child = userService.GetUserById(makePaymentViewModel.ChildId) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
@@ -67,10 +67,10 @@ namespace Suteki.TardisBank.Controllers
 
 
         [HttpGet]
-        public ActionResult ParentView(string id)
+        public ActionResult ParentView(int id)
         {
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserByUserName(id) as Child;
+            var child = userService.GetUserById(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
@@ -154,7 +154,7 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult WithdrawCashForChild(string id)
+        public ActionResult WithdrawCashForChild(int id)
         {
             // id is the child's user name
             if (id == null)
@@ -163,7 +163,7 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserByUserName(id) as Child;
+            var child = userService.GetUserById(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 

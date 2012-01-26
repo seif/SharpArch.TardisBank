@@ -112,7 +112,7 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult Activate(string id)
+        public ActionResult Activate(int id)
         {
             // id is the activation key
             var user = userService.GetUserByActivationKey(id);

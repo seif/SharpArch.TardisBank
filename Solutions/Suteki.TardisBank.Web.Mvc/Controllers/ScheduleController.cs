@@ -18,10 +18,10 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddSchedule(string id)
+        public ActionResult AddSchedule(int id)
         {
             // id is the child's username
-            var child = userService.GetUserByUserName(id) as Child;
+            var child = userService.GetUserById(id) as Child;
             if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
             // give the user some defaults
@@ -62,10 +62,10 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult RemoveSchedule(string id, int scheduleId)
+        public ActionResult RemoveSchedule(int id, int scheduleId)
         {
             // id is the child user name
-            var child = userService.GetUserByUserName(id) as Child;
+            var child = userService.GetUserById(id) as Child;
             if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
             child.Account.RemovePaymentSchedule(scheduleId);

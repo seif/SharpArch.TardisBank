@@ -4,7 +4,7 @@ namespace Suteki.TardisBank.ViewModel
 {
     public class WithdrawCashForChildViewModel
     {
-        public string ChildId { get; set; }
+        public int ChildId{ get; set; }
         public string ChildName { get; set; }
 
         [Required]

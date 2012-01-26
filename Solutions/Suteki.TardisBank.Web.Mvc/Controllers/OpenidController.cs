@@ -90,8 +90,8 @@ namespace Suteki.TardisBank.Controllers
 
         void CreateNewParentIfTheyDontAlreadyExist(IAuthenticationResponse response)
         {
-            var userId = Model.User.UserIdFromUserName(response.ClaimedIdentifier);
-            if (userService.GetUser(userId) != null) return;
+            var userName = response.ClaimedIdentifier;
+            if (userService.GetUserByUserName(userName) != null) return;
 
             var parent = new Parent(response.FriendlyIdentifierForDisplay, response.ClaimedIdentifier, "todo");
             userService.SaveUser(parent);

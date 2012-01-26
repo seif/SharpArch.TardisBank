@@ -2,18 +2,18 @@
 
 namespace Suteki.TardisBank.Model
 {
-    public class PaymentSchedule
+    using SharpArch.Domain.DomainModel;
+
+    public class PaymentSchedule : Entity
     {
-        public PaymentSchedule(int id, DateTime nextRun, Interval interval, decimal amount, string description)
+        public PaymentSchedule(DateTime nextRun, Interval interval, decimal amount, string description)
         {
-            Id = id;
             NextRun = nextRun;
             Interval = interval;
             Amount = amount;
             Description = description;
         }
 
-        public int Id { get; private set; }
         public DateTime NextRun { get; private set; }
         public Interval Interval { get; private set; }
         public decimal Amount { get; private set; }
