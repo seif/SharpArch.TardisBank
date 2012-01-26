@@ -32,7 +32,7 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult DeleteChild(int id)
         {
             // id is the child's user name
-            var child = userService.GetUserById(id) as Child;
+            var child = userService.GetUser(id) as Child;
             if (child == null)
             {
                 return StatusCode.NotFound;

@@ -5,12 +5,13 @@ using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Services
 {
+    using SharpArch.Domain.PersistenceSupport;
+
     public interface IUserService
     {
         User CurrentUser { get; }
         User GetUser(int userId);
         User GetUserByUserName(string userName);
-        User GetUserById(int id);
         User GetUserByActivationKey(int activationKey);
         void SaveUser(User user);
         void DeleteUser(int userId);
@@ -24,9 +25,12 @@ namespace Suteki.TardisBank.Services
     {
         readonly IHttpContextService context;
 
-        public UserService(IHttpContextService context)
+        readonly ILinqRepository<User> userRepository;
+
+        public UserService(IHttpContextService context, ILinqRepository<User> userRepository)
         {
             this.context = context;
+            this.userRepository = userRepository;
         }
 
         public User CurrentUser
@@ -34,10 +38,8 @@ namespace Suteki.TardisBank.Services
             get 
             {
                 if (!context.UserIsAuthenticated) return null;
-                var userId = string.Format("users/{0}", context.UserName);
 
-                // TODO return user
-                throw new NotImplementedException("Just build for now.");
+                return this.GetUserByUserName(context.UserName);
             }
         }
 
@@ -48,8 +50,7 @@ namespace Suteki.TardisBank.Services
                 throw new ArgumentNullException("userId");
             }
 
-            // TODO return user
-            throw new NotImplementedException("Just build for now.");
+            return userRepository.FindOne(userId);
         }
 
         public User GetUserByUserName(string userName)
@@ -58,14 +59,8 @@ namespace Suteki.TardisBank.Services
             {
                 throw new ArgumentNullException("userName");
             }
-            
-            // TODO return user
-            throw new NotImplementedException("Just build for now.");
-        }
 
-        public User GetUserById(int id)
-        {
-            throw new NotImplementedException();
+            return this.userRepository.FindAll().FirstOrDefault(u => u.UserName == userName);
         }
 
         public User GetUserByActivationKey(int activationKey)

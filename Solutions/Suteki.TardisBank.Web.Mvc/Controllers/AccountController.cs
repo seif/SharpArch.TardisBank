@@ -27,7 +27,7 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserById(id) as Child;
+            var child = userService.GetUser(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
@@ -56,7 +56,7 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserById(makePaymentViewModel.ChildId) as Child;
+            var child = userService.GetUser(makePaymentViewModel.ChildId) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
@@ -70,7 +70,7 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult ParentView(int id)
         {
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserById(id) as Child;
+            var child = userService.GetUser(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
@@ -163,7 +163,7 @@ namespace Suteki.TardisBank.Controllers
             }
 
             var parent = userService.CurrentUser as Parent;
-            var child = userService.GetUserById(id) as Child;
+            var child = userService.GetUser(id) as Child;
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
