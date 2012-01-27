@@ -12,15 +12,19 @@ namespace Suteki.TardisBank.Model
             IsActive = true;
         }
 
-        public int ParentId { get; set; }
-        public Account Account { get; set; }
+        protected Child()
+        {
+        }
 
-        public void ReceivePayment(decimal amount, string description)
+        public virtual int ParentId { get; set; }
+        public virtual Account Account { get; set; }
+
+        public virtual void ReceivePayment(decimal amount, string description)
         {
             Account.AddTransaction(description, amount);
         }
 
-        public void WithdrawCashFromParent(Parent parent, decimal amount, string description)
+        public virtual void WithdrawCashFromParent(Parent parent, decimal amount, string description)
         {
             var insufficientFundsMessage = string.Format(
                 "You can not withdraw {0} because you only have {1} in your account",
@@ -31,7 +35,7 @@ namespace Suteki.TardisBank.Model
             parent.SendMessage(string.Format("{0} would like to withdraw {1}", Name, amount.ToString("c")));
         }
 
-        public void AcceptCashFromParent(Parent parent, decimal amount, string description)
+        public virtual void AcceptCashFromParent(Parent parent, decimal amount, string description)
         {
             var insufficientFundsMessage = string.Format(
                 "You can not withdraw {0} because {1}'s account only has {2}",

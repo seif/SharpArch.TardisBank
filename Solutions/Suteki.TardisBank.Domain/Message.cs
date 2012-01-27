@@ -13,13 +13,17 @@ namespace Suteki.TardisBank.Model
             HasBeenRead = false;
         }
 
-        public void Read()
+        protected Message()
+        {
+        }
+
+        public virtual void Read()
         {
             HasBeenRead = true;
         }
 
-        public DateTime Date { get; private set; }
-        public string Text { get; private set; }
-        public bool HasBeenRead { get; private set; }
+        public virtual DateTime Date { get; protected set; }
+        public virtual string Text { get; protected set; }
+        public virtual bool HasBeenRead { get; protected set; }
     }
 }

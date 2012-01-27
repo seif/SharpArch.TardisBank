@@ -14,12 +14,16 @@ namespace Suteki.TardisBank.Model
             Description = description;
         }
 
-        public DateTime NextRun { get; private set; }
-        public Interval Interval { get; private set; }
-        public decimal Amount { get; private set; }
-        public string Description { get; private set; }
+        protected PaymentSchedule()
+        {
+        }
 
-        public void CalculateNextRunDate()
+        public virtual DateTime NextRun { get; protected set; }
+        public virtual Interval Interval { get; protected set; }
+        public virtual decimal Amount { get; protected set; }
+        public virtual string Description { get; protected set; }
+
+        public virtual void CalculateNextRunDate()
         {
             switch (Interval)
             {

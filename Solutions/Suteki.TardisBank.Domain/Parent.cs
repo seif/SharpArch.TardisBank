@@ -10,23 +10,26 @@ namespace Suteki.TardisBank.Model
 
     public class Parent : User
     {
-        public IList<ChildProxy> Children { get; private set; }
-        public string ActivationKey { get; private set; }
+        public virtual IList<ChildProxy> Children { get; protected set; }
+        public virtual string ActivationKey { get; protected set; }
 
         public Parent(string name, string userName, string password) : base(name, userName, password)
         {
             Children = new List<ChildProxy>();
         }
 
+        protected Parent()
+        {
+        }
         // should be called when parent is first created.
-        public Parent Initialise()
+        public virtual Parent Initialise()
         {
             ActivationKey = Guid.NewGuid().ToString();
             DomainEvents.Raise(new NewParentCreatedEvent(this));
             return this;
         }
 
-        public Child CreateChild(string name, string userName, string password)
+        public virtual Child CreateChild(string name, string userName, string password)
         {
             var child = new Child(name, userName, password, Id);
             var childProxy = new ChildProxy(child.Id, name);
@@ -34,12 +37,12 @@ namespace Suteki.TardisBank.Model
             return child;
         }
 
-        public void MakePaymentTo(Child child, decimal amount)
+        public virtual void MakePaymentTo(Child child, decimal amount)
         {
             MakePaymentTo(child, amount, string.Format("Payment from {0}", Name));
         }
 
-        public void MakePaymentTo(Child child, decimal amount, string description)
+        public virtual void MakePaymentTo(Child child, decimal amount, string description)
         {
             if (!HasChild(child))
             {
@@ -48,7 +51,7 @@ namespace Suteki.TardisBank.Model
             child.ReceivePayment(amount, description);
         }
 
-        public bool HasChild(Child child)
+        public virtual bool HasChild(Child child)
         {
             return Children.Any(x => x.ChildId == child.Id);
         }
@@ -59,12 +62,12 @@ namespace Suteki.TardisBank.Model
             base.Activate();
         }
 
-        public bool HasChild(int childId)
+        public virtual bool HasChild(int childId)
         {
             return Children.Any(x => x.ChildId == childId);
         }
 
-        public void RemoveChild(int childId)
+        public virtual void RemoveChild(int childId)
         {
             var childToRemove = Children.SingleOrDefault(x => x.ChildId == childId);
             if (childToRemove != null)
@@ -82,7 +85,11 @@ namespace Suteki.TardisBank.Model
             Name = name;
         }
 
-        public int ChildId { get; private set; }
-        public string Name { get; private set; }
+        protected ChildProxy()
+        {
+        }
+
+        public virtual int ChildId { get; protected set; }
+        public virtual string Name { get; protected set; }
     }
 }

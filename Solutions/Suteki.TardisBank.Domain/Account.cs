@@ -9,7 +9,7 @@ namespace Suteki.TardisBank.Model
     public class Account : Entity
     {
         public const int MaxTransactions = 100;
-        public decimal OldTransactionsBalance { get; private set; }
+        public virtual decimal OldTransactionsBalance { get; protected set; }
 
         public Account()
         {
@@ -18,16 +18,16 @@ namespace Suteki.TardisBank.Model
             OldTransactionsBalance = 0M;
         }
 
-        public IList<Transaction> Transactions { get; private set; }
+        public virtual IList<Transaction> Transactions { get; protected set; }
 
-        public decimal Balance
+        public virtual decimal Balance
         {
             get { return OldTransactionsBalance + Transactions.Sum(x => x.Amount); }
         }
 
-        public IList<PaymentSchedule> PaymentSchedules { get; private set; }
+        public virtual IList<PaymentSchedule> PaymentSchedules { get; protected set; }
 
-        public void AddTransaction(string description, decimal amount)
+        public virtual void AddTransaction(string description, decimal amount)
         {
             Transactions.Add(new Transaction(description, amount));
 
@@ -43,12 +43,12 @@ namespace Suteki.TardisBank.Model
             OldTransactionsBalance += oldestTransaction.Amount;
         }
 
-        public void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
+        public virtual void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
         {
             PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description));
         }
 
-        public void TriggerScheduledPayments(DateTime now)
+        public virtual void TriggerScheduledPayments(DateTime now)
         {
             var overdueSchedules = PaymentSchedules.Where(x => x.NextRun <= now);
             foreach (var overdueSchedule in overdueSchedules)
@@ -58,7 +58,7 @@ namespace Suteki.TardisBank.Model
             }
         }
 
-        public void RemovePaymentSchedule(int paymentScheduleId)
+        public virtual void RemovePaymentSchedule(int paymentScheduleId)
         {
             var scheduleToRemove = PaymentSchedules.SingleOrDefault(x => x.Id == paymentScheduleId);
             if (scheduleToRemove == null) return;

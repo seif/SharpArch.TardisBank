@@ -2,7 +2,9 @@ using System;
 
 namespace Suteki.TardisBank.Model
 {
-    public class Transaction
+    using SharpArch.Domain.DomainModel;
+
+    public class Transaction : Entity
     {
         public Transaction(string description, decimal amount)
         {
@@ -11,8 +13,12 @@ namespace Suteki.TardisBank.Model
             Date = DateTime.Now.Date;
         }
 
-        public string Description { get; private set; }
-        public decimal Amount { get; private set; }
-        public DateTime Date { get; private set; }
+        protected Transaction()
+        {
+        }
+
+        public virtual string Description { get; protected set; }
+        public virtual decimal Amount { get; protected set; }
+        public virtual DateTime Date { get; protected set; }
     }
 }

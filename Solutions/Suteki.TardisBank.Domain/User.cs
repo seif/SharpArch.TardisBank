@@ -12,11 +12,15 @@ namespace Suteki.TardisBank.Model
     {
         public const int MaxMessages = 20;
 
-        public string Name { get; private set; }
-        public string UserName { get; private set; }
-        public string Password { get; private set; }
-        public bool IsActive { get; protected set; }
-        public IList<Message> Messages { get; protected set; }
+        protected User()
+        {
+        }
+
+        public virtual string Name { get; protected set; }
+        public virtual string UserName { get; protected set; }
+        public virtual string Password { get; protected set; }
+        public virtual bool IsActive { get; protected set; }
+        public virtual IList<Message> Messages { get; protected set; }
 
         protected User(string name, string userName, string password)
         {
@@ -27,7 +31,7 @@ namespace Suteki.TardisBank.Model
             IsActive = false;
         }
 
-        public void SendMessage(string text)
+        public virtual void SendMessage(string text)
         {
             Messages.Add(new Message(DateTime.Now.Date, text));
             RemoveOldMessages();
@@ -43,7 +47,7 @@ namespace Suteki.TardisBank.Model
             Messages.Remove(oldestMessage);
         }
 
-        public void ReadMessage(int messageId)
+        public virtual void ReadMessage(int messageId)
         {
             var message = Messages.SingleOrDefault(x => x.Id == messageId);
             if (message == null)
@@ -58,7 +62,7 @@ namespace Suteki.TardisBank.Model
             IsActive = true;
         }
 
-        public void ResetPassword(string newPassword)
+        public virtual void ResetPassword(string newPassword)
         {
             Password = newPassword;
         }
