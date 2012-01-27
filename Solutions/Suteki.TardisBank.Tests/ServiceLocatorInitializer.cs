@@ -3,10 +3,11 @@
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
 
-    using CommonServiceLocator.WindsorAdapter;
     using Microsoft.Practices.ServiceLocation;
     using SharpArch.Domain.PersistenceSupport;
     using SharpArch.NHibernate;
+
+    using global::Suteki.TardisBank.Web.Mvc.CastleWindsor;
 
     public class ServiceLocatorInitializer
     {

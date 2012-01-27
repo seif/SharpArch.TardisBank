@@ -6,29 +6,20 @@
     using System.Web.Routing;
 
     using Castle.Windsor;
-
-    // Suteki.TardisBank.Web.Mvc.CastleWindsor
     using Castle.Windsor.Installer;
 
-    using CastleWindsor;
-
-    using CommonServiceLocator.WindsorAdapter;
-
-    using Controllers;
-    
-    using Infrastructure.NHibernateMaps;
-
-    using Suteki.TardisBank.Controllers;
-
     using log4net.Config;
-    
+
     using Microsoft.Practices.ServiceLocation;
-    
+
     using SharpArch.NHibernate;
     using SharpArch.NHibernate.Web.Mvc;
     using SharpArch.Web.Mvc.Castle;
     using SharpArch.Web.Mvc.ModelBinder;
-    
+
+    using Suteki.TardisBank.Infrastructure.NHibernateMaps;
+    using Suteki.TardisBank.Web.Mvc.CastleWindsor;
+    using Suteki.TardisBank.Web.Mvc.Controllers;
 
     /// <summary>
     /// Represents the MVC Application
