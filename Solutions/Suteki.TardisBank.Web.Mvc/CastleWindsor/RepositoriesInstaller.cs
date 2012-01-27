@@ -33,15 +33,18 @@ namespace Suteki.TardisBank.IoC
                 Component.For(typeof(INHibernateRepository<>))
                     .ImplementedBy(typeof(NHibernateRepository<>))
                     .Named("nhibernateRepositoryType")
-                    .Forward(typeof(IRepository<>), typeof(ILinqRepository<>)));
+                    .Forward(typeof(IRepository<>)));
             
             container.Register(
                 Component.For(typeof(INHibernateRepositoryWithTypedId<,>))
                     .ImplementedBy(typeof(NHibernateRepositoryWithTypedId<,>))
                     .Named("nhibernateRepositoryWithTypedId")
                     .Forward(typeof(IRepositoryWithTypedId<,>)));
-
             
+            container.Register(
+                Component.For(typeof(ILinqRepository<>))
+                    .ImplementedBy(typeof(LinqRepository<>))
+                    .Named("nhibernateLinqWithTypedId"));
         }
     }
 }
