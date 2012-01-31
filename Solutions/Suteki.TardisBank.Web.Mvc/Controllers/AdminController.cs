@@ -41,7 +41,7 @@ namespace Suteki.TardisBank.Controllers
 
             foreach (var childProxy in parent.Children)
             {
-                userService.DeleteUser(childProxy.ChildId);
+                userService.DeleteUser(childProxy.Id);
             }
             userService.DeleteUser(parent.Id);
 

@@ -33,7 +33,7 @@ namespace Suteki.TardisBank.Model
 
         public virtual void SendMessage(string text)
         {
-            Messages.Add(new Message(DateTime.Now.Date, text));
+            Messages.Add(new Message(DateTime.Now.Date, text, this));
             RemoveOldMessages();
 
             DomainEvents.Raise(new SendMessageEvent(this, text));

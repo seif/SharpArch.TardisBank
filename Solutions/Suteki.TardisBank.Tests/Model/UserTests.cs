@@ -19,16 +19,19 @@ namespace Suteki.TardisBank.Tests.Model
         protected override void LoadTestData()
         {
             var mike = new Parent("Mike Hadlow", "mike@yahoo.com", "yyy");
+            NHibernateSession.Current.Save(mike);
+
             var leo = mike.CreateChild("Leo", "leohadlow", "xxx");
             var yuna = mike.CreateChild("Yuna", "yunahadlow", "xxx");
-            var john = new Parent("John Robinson", "john@gmail.com", "yyy");
-            var jim = john.CreateChild("Jim", "jimrobinson", "xxx");
-
-            NHibernateSession.Current.Save(mike);
             NHibernateSession.Current.Save(leo);
             NHibernateSession.Current.Save(yuna);
+            
+            var john = new Parent("John Robinson", "john@gmail.com", "yyy");
             NHibernateSession.Current.Save(john);
+
+            var jim = john.CreateChild("Jim", "jimrobinson", "xxx");
             NHibernateSession.Current.Save(jim);
+
             NHibernateSession.Current.Flush();
         }
 
@@ -38,13 +41,7 @@ namespace Suteki.TardisBank.Tests.Model
                 var users = NHibernateSession.Current.Query<User>().ToArray();
 
                 users.Length.ShouldEqual(5);
-
-                users[0].Id.ShouldEqual("users/mike@yahoo.com");
-                users[1].Id.ShouldEqual("users/leohadlow");
-                users[2].Id.ShouldEqual("users/yunahadlow");
-                users[3].Id.ShouldEqual("users/john@gmail.com");
-                users[4].Id.ShouldEqual("users/jimrobinson");
-
+            
                 users[0].GetType().Name.ShouldEqual("Parent");
                 users[1].GetType().Name.ShouldEqual("Child");
                 users[2].GetType().Name.ShouldEqual("Child");

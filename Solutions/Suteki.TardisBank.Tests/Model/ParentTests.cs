@@ -28,7 +28,6 @@ namespace Suteki.TardisBank.Tests.Model
             parent.ShouldNotBeNull();
             parent.Name.ShouldEqual("Mike Hadlow");
             parent.UserName.ShouldEqual("mike@yahoo.com");
-            parent.Id.ShouldEqual("users/mike@yahoo.com");
             parent.Children.ShouldNotBeNull();
         }
 
@@ -49,9 +48,6 @@ namespace Suteki.TardisBank.Tests.Model
             parent.Children[0].Name.ShouldEqual("jim");
             parent.Children[1].Name.ShouldEqual("jenny");
             parent.Children[2].Name.ShouldEqual("jez");
-
-            parent.Children[0].ChildId.ShouldEqual("users/jim123");
-
         }
     }
 }

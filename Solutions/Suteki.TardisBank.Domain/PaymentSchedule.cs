@@ -6,12 +6,13 @@ namespace Suteki.TardisBank.Model
 
     public class PaymentSchedule : Entity
     {
-        public PaymentSchedule(DateTime nextRun, Interval interval, decimal amount, string description)
+        public PaymentSchedule(DateTime nextRun, Interval interval, decimal amount, string description, Account account)
         {
             NextRun = nextRun;
             Interval = interval;
             Amount = amount;
             Description = description;
+            Account = account;
         }
 
         protected PaymentSchedule()
@@ -22,6 +23,8 @@ namespace Suteki.TardisBank.Model
         public virtual Interval Interval { get; protected set; }
         public virtual decimal Amount { get; protected set; }
         public virtual string Description { get; protected set; }
+
+        public virtual Account Account { get; protected set; }
 
         public virtual void CalculateNextRunDate()
         {

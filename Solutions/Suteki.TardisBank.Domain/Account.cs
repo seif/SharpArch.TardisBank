@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Model
 
         public virtual void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
         {
-            PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description));
+            PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description, this));
         }
 
         public virtual void TriggerScheduledPayments(DateTime now)

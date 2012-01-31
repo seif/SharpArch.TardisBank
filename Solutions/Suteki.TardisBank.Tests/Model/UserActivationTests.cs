@@ -28,13 +28,12 @@ namespace Suteki.TardisBank.Tests.Model
         public void Parent_should_raise_an_event_when_created()
         {
             NewParentCreatedEvent newParentCreatedEvent = null;
-            //using(DomainEvents.TestWith(e => { newParentCreatedEvent = (NewParentCreatedEvent)e; }))
-            //{
-                var parent = new Parent("Dad", "mike@mike.com", "xxx").Initialise();
+            DomainEvents.Register<NewParentCreatedEvent>(e => { newParentCreatedEvent = (NewParentCreatedEvent)e; });
+      
+            var parent = new Parent("Dad", "mike@mike.com", "xxx").Initialise();
 
-                newParentCreatedEvent.ShouldNotBeNull();
-                newParentCreatedEvent.Parent.ShouldBeTheSameAs(parent);
-            //}
+            newParentCreatedEvent.ShouldNotBeNull();
+            newParentCreatedEvent.Parent.ShouldBeTheSameAs(parent);
         }
 
         [Test]

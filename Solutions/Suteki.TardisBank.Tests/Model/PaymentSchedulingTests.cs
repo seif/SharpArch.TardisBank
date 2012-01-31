@@ -63,19 +63,6 @@ namespace Suteki.TardisBank.Tests.Model
         }
 
         [Test]
-        public void PaymentSchedule_ids_should_increment()
-        {
-            child.Account.AddPaymentSchedule(startDate, interval, amount, description);
-            child.Account.AddPaymentSchedule(startDate, interval, amount, description);
-            child.Account.AddPaymentSchedule(startDate, interval, amount, description);
-
-            child.Account.PaymentSchedules.Count.ShouldEqual(3);
-            child.Account.PaymentSchedules[0].Id.ShouldEqual(0);
-            child.Account.PaymentSchedules[1].Id.ShouldEqual(1);
-            child.Account.PaymentSchedules[2].Id.ShouldEqual(2);
-        }
-
-        [Test]
         public void Should_be_able_to_remove_a_payment_schedule()
         {
             child.Account.AddPaymentSchedule(startDate, interval, amount, description);

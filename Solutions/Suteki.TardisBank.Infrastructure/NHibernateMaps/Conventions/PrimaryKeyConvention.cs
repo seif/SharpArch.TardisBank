@@ -11,6 +11,7 @@
         public void Apply(FluentNHibernate.Conventions.Instances.IIdentityInstance instance)
         {
             instance.Column(instance.EntityType.Name + "Id");
+            instance.GeneratedBy.HiLo("1001");
         }
     }
 }

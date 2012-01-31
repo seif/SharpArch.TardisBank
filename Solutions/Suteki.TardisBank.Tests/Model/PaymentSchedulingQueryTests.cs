@@ -25,6 +25,8 @@ namespace Suteki.TardisBank.Tests.Model
 
         protected override void LoadTestData()
         {
+            parent = new Parent("parent", "parent", "xxx");
+            NHibernateSession.Current.Save(parent);
             this.someDate = new DateTime(2010, 4, 5);
             NHibernateSession.Current.Save(CreateChildWithSchedule("one", 1M, this.someDate.AddDays(-2)));
             NHibernateSession.Current.Save(CreateChildWithSchedule("two", 2M, this.someDate.AddDays(-1)));

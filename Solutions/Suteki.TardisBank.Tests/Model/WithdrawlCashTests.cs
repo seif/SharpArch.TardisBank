@@ -7,6 +7,8 @@ using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Tests.Model
 {
+    using SharpArch.Domain.Events;
+
     [TestFixture]
     public class WithdrawlCashTests
     {
@@ -68,7 +70,7 @@ namespace Suteki.TardisBank.Tests.Model
         {
             SendMessageEvent sendMessageEvent = null;
 
-            //DomainEvent.TestWith(@event => { sendMessageEvent = (SendMessageEvent)@event; });
+            DomainEvents.Register<SendMessageEvent>(@event => { sendMessageEvent = @event; });
 
             child.WithdrawCashFromParent(parent, 2.30M, "For Toys");
 

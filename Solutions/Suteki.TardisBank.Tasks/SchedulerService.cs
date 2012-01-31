@@ -4,6 +4,10 @@ using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Services
 {
+    using NHibernate.Linq;
+
+    using SharpArch.NHibernate;
+
     public interface ISchedulerService
     {
         void ExecuteUpdates(DateTime now);
@@ -20,7 +24,15 @@ namespace Suteki.TardisBank.Services
         /// </summary>
         public void ExecuteUpdates(DateTime now)
         {
-            //TODO implement query Child/ByPendingSchedule .WhereLessThanOrEqual("NextRun", now)
+            var today = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59);
+
+            var results = NHibernateSession.Current.Query<Child>().
+                Where(c => c.Account.PaymentSchedules.Any(p => p.NextRun < today)).Fetch(c => c.Account);
+
+            foreach (var child in results.ToList())
+            {
+                child.Account.TriggerScheduledPayments(now);
+            }
         }
     }
 }
