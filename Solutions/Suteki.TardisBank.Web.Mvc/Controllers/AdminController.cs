@@ -30,7 +30,7 @@ namespace Suteki.TardisBank.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteParent()
         {
             var parent = userService.CurrentUser as Parent;
@@ -54,7 +54,7 @@ namespace Suteki.TardisBank.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
 

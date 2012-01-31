@@ -18,7 +18,7 @@ namespace Suteki.TardisBank.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Execute(string id)
         {
             if (id == null || configuration.ScheduleKey != id) return StatusCode.NotFound;

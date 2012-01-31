@@ -16,7 +16,7 @@ namespace Suteki.TardisBank.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Index()
         {
             var parent = userService.CurrentUser as Parent;
@@ -28,7 +28,7 @@ namespace Suteki.TardisBank.Controllers
             return View(parent);
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteChild(int id)
         {
             // id is the child's user name
@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteChild(DeleteChildConfirmViewModel deleteChildConfirmViewModel)
         {
             var parent = userService.CurrentUser as Parent;

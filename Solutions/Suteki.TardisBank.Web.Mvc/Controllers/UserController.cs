@@ -43,7 +43,7 @@ namespace Suteki.TardisBank.Controllers
             };
         }
 
-        [HttpPost]
+        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
             return RegisterInternal(registrationViewModel, "Sorry, that email address has already been registered.",
@@ -111,7 +111,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Confirm");
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Activate(string id)
         {
             // id is the activation key
@@ -135,7 +135,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Login", loginViewModel);
         }
 
-        [HttpPost]
+        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             if (loginViewModel == null)
@@ -190,7 +190,7 @@ namespace Suteki.TardisBank.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult AddChild()
         {
             var parent = userService.CurrentUser as Parent;
@@ -203,7 +203,7 @@ namespace Suteki.TardisBank.Controllers
             return View("AddChild", GetRegistrationViewModel());
         }
 
-        [HttpPost]
+        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult AddChild(RegistrationViewModel registrationViewModel)
         {
             var parent = userService.CurrentUser as Parent;
@@ -220,7 +220,7 @@ namespace Suteki.TardisBank.Controllers
                 );
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Messages()
         {
             var user = userService.CurrentUser;
@@ -231,7 +231,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Messages", user);
         }
 
-        [HttpGet]
+        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult ReadMessage(int id)
         {
             var user = userService.CurrentUser;
