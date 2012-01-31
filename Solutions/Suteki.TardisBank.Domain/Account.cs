@@ -29,7 +29,7 @@ namespace Suteki.TardisBank.Model
 
         public virtual void AddTransaction(string description, decimal amount)
         {
-            Transactions.Add(new Transaction(description, amount));
+            Transactions.Add(new Transaction(description, amount, this));
 
             RemoveOldTransactions();
         }

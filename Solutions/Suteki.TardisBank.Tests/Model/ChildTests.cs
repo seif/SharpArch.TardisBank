@@ -52,6 +52,18 @@ namespace Suteki.TardisBank.Tests.Model
             var child = childRepository.Get(childId);
             child.Account.PaymentSchedules[0].Id.ShouldBeGreaterThan(0);
         }
+
+        [Test]
+        public void Should_be_able_to_add_transaction_to_account()
+        {
+            var childRepository = new LinqRepository<Child>();
+            var childToTestOn = childRepository.Get(childId);
+            childToTestOn.ReceivePayment(10, "Reward");
+            FlushSessionAndEvict(childToTestOn);
+
+            var child = childRepository.Get(childId);
+            child.Account.Transactions[0].Id.ShouldBeGreaterThan(0);
+        }
     }
 }
 // ReSharper restore InconsistentNaming

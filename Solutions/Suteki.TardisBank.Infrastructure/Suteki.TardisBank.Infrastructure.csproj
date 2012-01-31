@@ -114,6 +114,7 @@
     <Compile Include="NHibernateMaps\Conventions\PrimaryKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
+    <Compile Include="NHibernateMaps\TransactionMap.cs" />
     <Compile Include="NHibernateMaps\MessageMap.cs" />
     <Compile Include="NHibernateMaps\PaymentScheduleMap.cs" />
     <Compile Include="NHibernateMaps\UserMap.cs" />
