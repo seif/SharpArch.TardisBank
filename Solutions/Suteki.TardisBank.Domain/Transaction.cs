@@ -1,17 +1,17 @@
-using System;
-
-namespace Suteki.TardisBank.Model
+namespace Suteki.TardisBank.Domain
 {
+    using System;
+
     using SharpArch.Domain.DomainModel;
 
     public class Transaction : Entity
     {
         public Transaction(string description, decimal amount, Account account)
         {
-            Description = description;
-            Amount = amount;
-            Account = account;
-            Date = DateTime.Now.Date;
+            this.Description = description;
+            this.Amount = amount;
+            this.Account = account;
+            this.Date = DateTime.Now.Date;
         }
 
         protected Transaction()

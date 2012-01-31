@@ -1,11 +1,11 @@
-using System;
-using Suteki.TardisBank.Events;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Services;
-
-namespace Suteki.TardisBank.Handlers
+namespace Suteki.TardisBank.Tasks.EventHandlers
 {
+    using System;
+
     using SharpArch.Domain.Events;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Domain.Events;
 
     public class SendMessageEmailHandler : IHandles<SendMessageEvent>
     {
@@ -33,7 +33,7 @@ namespace Suteki.TardisBank.Handlers
             const string subject = "Message from Tardis Bank";
             var body = sendMessageEvent.Message;
 
-            emailService.SendEmail(toAddress, subject, body);
+            this.emailService.SendEmail(toAddress, subject, body);
         }
     }
 }

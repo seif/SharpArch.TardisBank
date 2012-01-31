@@ -1,12 +1,13 @@
-using System;
-using System.Runtime.Serialization;
-using System.Web.Mvc;
-using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OpenId;
-using DotNetOpenAuth.OpenId.RelyingParty;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Tasks
 {
+    using System;
+    using System.Runtime.Serialization;
+    using System.Web.Mvc;
+
+    using DotNetOpenAuth.Messaging;
+    using DotNetOpenAuth.OpenId;
+    using DotNetOpenAuth.OpenId.RelyingParty;
+
     public interface IOpenIdService
     {
         IAuthenticationResponse GetResponse();

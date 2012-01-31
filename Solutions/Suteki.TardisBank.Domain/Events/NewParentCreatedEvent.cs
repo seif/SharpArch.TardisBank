@@ -1,8 +1,7 @@
-using System;
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.Events
+namespace Suteki.TardisBank.Domain.Events
 {
+    using System;
+
     using SharpArch.Domain.Events;
 
     public class NewParentCreatedEvent : IDomainEvent
@@ -13,7 +12,7 @@ namespace Suteki.TardisBank.Events
             {
                 throw new ArgumentNullException("parent");
             }
-            Parent = parent;
+            this.Parent = parent;
         }
 
         public Parent Parent { get; private set; }

@@ -1,4 +1,4 @@
-namespace Suteki.TardisBank.Model
+namespace Suteki.TardisBank.Domain
 {
     public enum Interval
     {

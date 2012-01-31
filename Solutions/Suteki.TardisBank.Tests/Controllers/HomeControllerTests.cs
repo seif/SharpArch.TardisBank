@@ -1,10 +1,12 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
-using Suteki.TardisBank.Controllers;
+
 using Suteki.TardisBank.Tests.Helpers;
 
 namespace Suteki.TardisBank.Tests.Controllers
 {
+    using global::Suteki.TardisBank.Web.Mvc.Controllers;
+
     [TestFixture]
     public class HomeControllerTests
     {

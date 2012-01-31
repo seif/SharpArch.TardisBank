@@ -11,7 +11,7 @@ namespace Suteki.TardisBank.Tests.Model
     using SharpArch.NHibernate;
     using SharpArch.Testing.NUnit.NHibernate;
 
-    using global::Suteki.TardisBank.Model;
+    using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
     public class UserTests : RepositoryTestsBase

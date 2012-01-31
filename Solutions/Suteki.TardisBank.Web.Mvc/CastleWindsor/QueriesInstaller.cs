@@ -1,12 +1,10 @@
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace Suteki.TardisBank.IoC
+namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
 {
-    using SharpArch.NHibernate;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
 
-    using Suteki.TardisBank.Services;
+    using SharpArch.NHibernate;
 
     public class QueriesInstaller : IWindsorInstaller
     {

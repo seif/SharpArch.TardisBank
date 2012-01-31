@@ -1,7 +1,7 @@
-using System.Threading;
-
-namespace Suteki.TardisBank.Mvc
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System.Threading;
+
     public class Current
     {
         public static string CurrencySymbol

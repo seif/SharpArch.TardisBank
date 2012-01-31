@@ -13,8 +13,8 @@ namespace Suteki.TardisBank.Tests.Model
 
     using NUnit.Framework;
 
-    using global::Suteki.TardisBank.Model;
-    using global::Suteki.TardisBank.Services;
+    using global::Suteki.TardisBank.Domain;
+    using global::Suteki.TardisBank.Tasks;
 
     [TestFixture]
     public class PaymentSchedulingQueryTests : RepositoryTestsBase

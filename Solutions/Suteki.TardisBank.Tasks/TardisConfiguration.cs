@@ -1,20 +1,20 @@
-namespace Suteki.TardisBank.IoC
+namespace Suteki.TardisBank.Tasks
 {
     public class TardisConfiguration
     {
         public TardisConfiguration()
         {
             // set some useful defaults here
-            ScheduleKey = "run";
+            this.ScheduleKey = "run";
 
-            EmailSmtpServer = ""; // if this string is empty emails just don't get sent
-            EmailEnableSsl = false;
-            EmailPort = 25;
-            EmailCredentialsUserName = ""; // if the username or password is blank, default credentials are used.
-            EmailCredentialsPassword = "";
-            EmailFromAddress = "";
+            this.EmailSmtpServer = ""; // if this string is empty emails just don't get sent
+            this.EmailEnableSsl = false;
+            this.EmailPort = 25;
+            this.EmailCredentialsUserName = ""; // if the username or password is blank, default credentials are used.
+            this.EmailCredentialsPassword = "";
+            this.EmailFromAddress = "";
 
-            GoogleAnalyticsUaCode = "";
+            this.GoogleAnalyticsUaCode = "";
         }
 
         public string ScheduleKey { get; set; }

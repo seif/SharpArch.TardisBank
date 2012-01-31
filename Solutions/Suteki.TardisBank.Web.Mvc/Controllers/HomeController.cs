@@ -1,12 +1,14 @@
-using System.Web.Mvc;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Domain;
+
     public class HomeController : Controller
     {
         public ViewResult Index()
         {
-            return View("Index");
+            return this.View("Index");
         }
 
         public ViewResult Error()
@@ -22,12 +24,12 @@ namespace Suteki.TardisBank.Controllers
 
         public ViewResult About()
         {
-            return View();
+            return this.View();
         }
 
         public ViewResult Legal()
         {
-            return View();
+            return this.View();
         }
     }
 }

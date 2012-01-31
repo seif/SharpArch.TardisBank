@@ -7,7 +7,7 @@ namespace Suteki.TardisBank.Tests.Model
 
     using NUnit.Framework;
 
-    using global::Suteki.TardisBank.Model;
+    using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
     public class MessageTests : RepositoryTestsBase

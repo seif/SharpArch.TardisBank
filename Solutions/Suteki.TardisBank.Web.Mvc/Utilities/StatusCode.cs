@@ -1,7 +1,7 @@
-using System.Web.Mvc;
-
-namespace Suteki.TardisBank.Helpers
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System.Web.Mvc;
+
     public static class StatusCode
     {
         public static ActionResult NotFound

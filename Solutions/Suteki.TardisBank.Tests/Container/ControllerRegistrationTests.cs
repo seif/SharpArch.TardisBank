@@ -6,11 +6,12 @@ using Castle.Core.Internal;
 using Castle.MicroKernel;
 using Castle.Windsor;
 using NUnit.Framework;
-using Suteki.TardisBank.Controllers;
-using Suteki.TardisBank.IoC;
 
 namespace Suteki.TardisBank.Tests.Container
 {
+    using global::Suteki.TardisBank.Web.Mvc.CastleWindsor;
+    using global::Suteki.TardisBank.Web.Mvc.Controllers;
+
     [TestFixture]
     public class ControllerRegistrationTests
     {

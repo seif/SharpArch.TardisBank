@@ -1,13 +1,13 @@
-using System;
-using System.Web.Mvc;
-using Suteki.TardisBank.Helpers;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
-using Suteki.TardisBank.Services;
-using Suteki.TardisBank.ViewModel;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System;
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     public class ScheduleController : Controller
     {
         readonly IUserService userService;
@@ -21,8 +21,8 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult AddSchedule(int id)
         {
             // id is the child's username
-            var child = userService.GetUser(id) as Child;
-            if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
+            var child = this.userService.GetUser(id) as Child;
+            if (this.userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
             // give the user some defaults
             var addScheduleViewModel = new AddScheduleViewModel
@@ -34,22 +34,22 @@ namespace Suteki.TardisBank.Controllers
                 StartDate = DateTime.Now
             };
 
-            return View("AddSchedule", addScheduleViewModel);
+            return this.View("AddSchedule", addScheduleViewModel);
         }
 
         [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult AddSchedule(AddScheduleViewModel addScheduleViewModel)
         {
-            if (!ModelState.IsValid) return View("AddSchedule", addScheduleViewModel);
+            if (!this.ModelState.IsValid) return this.View("AddSchedule", addScheduleViewModel);
 
             if (addScheduleViewModel.StartDate < DateTime.Now.Date)
             {
-                ModelState.AddModelError("StartDate", "The start date can not be in the past.");
-                return View("AddSchedule", addScheduleViewModel);
+                this.ModelState.AddModelError("StartDate", "The start date can not be in the past.");
+                return this.View("AddSchedule", addScheduleViewModel);
             }
 
-            var child = userService.GetUser(addScheduleViewModel.ChildId) as Child;
-            if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
+            var child = this.userService.GetUser(addScheduleViewModel.ChildId) as Child;
+            if (this.userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
             child.Account.AddPaymentSchedule(
                 addScheduleViewModel.StartDate,
@@ -58,19 +58,19 @@ namespace Suteki.TardisBank.Controllers
                 addScheduleViewModel.Description
                 );
 
-            return View("AddScheduleConfirm", addScheduleViewModel);
+            return this.View("AddScheduleConfirm", addScheduleViewModel);
         }
 
         [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult RemoveSchedule(int id, int scheduleId)
         {
             // id is the child user name
-            var child = userService.GetUser(id) as Child;
-            if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
+            var child = this.userService.GetUser(id) as Child;
+            if (this.userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
             child.Account.RemovePaymentSchedule(scheduleId);
 
-            return Redirect(Request.UrlReferrer.OriginalString);
+            return this.Redirect(this.Request.UrlReferrer.OriginalString);
         }
     }
 }

@@ -1,10 +1,8 @@
-using System;
-using System.Net;
-using System.Net.Mail;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Tasks
 {
-    using Suteki.TardisBank.IoC;
+    using System;
+    using System.Net;
+    using System.Net.Mail;
 
     public interface IEmailService
     {
@@ -34,25 +32,25 @@ namespace Suteki.TardisBank.Services
             {
                 throw new ArgumentNullException("body");
             }
-            if (string.IsNullOrWhiteSpace(configuration.EmailSmtpServer)) return;
+            if (string.IsNullOrWhiteSpace(this.configuration.EmailSmtpServer)) return;
 
             var message = new MailMessage(
-                        configuration.EmailFromAddress,
+                        this.configuration.EmailFromAddress,
                         toAddress,
                         subject,
                         body);
 
-            var client = new SmtpClient(configuration.EmailSmtpServer)
+            var client = new SmtpClient(this.configuration.EmailSmtpServer)
             {
-                EnableSsl = configuration.EmailEnableSsl,
-                Port = configuration.EmailPort,
+                EnableSsl = this.configuration.EmailEnableSsl,
+                Port = this.configuration.EmailPort,
             };
 
-            if (!string.IsNullOrWhiteSpace(configuration.EmailCredentialsUserName) && 
-                !string.IsNullOrWhiteSpace(configuration.EmailCredentialsPassword))
+            if (!string.IsNullOrWhiteSpace(this.configuration.EmailCredentialsUserName) && 
+                !string.IsNullOrWhiteSpace(this.configuration.EmailCredentialsPassword))
             {
-                client.Credentials = new NetworkCredential(configuration.EmailCredentialsUserName,
-                                                           configuration.EmailCredentialsPassword);
+                client.Credentials = new NetworkCredential(this.configuration.EmailCredentialsUserName,
+                                                           this.configuration.EmailCredentialsPassword);
             }
 
             client.Send(message);            

@@ -1,12 +1,12 @@
-using System.Web.Mvc;
-using Suteki.TardisBank.Helpers;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
-using Suteki.TardisBank.Services;
-using Suteki.TardisBank.ViewModel;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     public class AdminController : Controller
     {
         readonly IUserService userService;
@@ -21,19 +21,19 @@ namespace Suteki.TardisBank.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpGet]
         public ActionResult DeleteParentConfirm()
         {
-            return View();
+            return this.View();
         }
 
         [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteParent()
         {
-            var parent = userService.CurrentUser as Parent;
+            var parent = this.userService.CurrentUser as Parent;
             if (parent == null)
             {
                 return StatusCode.NotFound;
@@ -41,47 +41,47 @@ namespace Suteki.TardisBank.Controllers
 
             foreach (var childProxy in parent.Children)
             {
-                userService.DeleteUser(childProxy.Id);
+                this.userService.DeleteUser(childProxy.Id);
             }
-            userService.DeleteUser(parent.Id);
+            this.userService.DeleteUser(parent.Id);
 
-            return RedirectToAction("Logout", "User");
+            return this.RedirectToAction("Logout", "User");
         }
 
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
 
-            var oldHashedPassword = GetHashedPassword(model.OldPassword);
+            var oldHashedPassword = this.GetHashedPassword(model.OldPassword);
             bool passwordIsOk = false;
-            if (oldHashedPassword == userService.CurrentUser.Password)
+            if (oldHashedPassword == this.userService.CurrentUser.Password)
             {
                 passwordIsOk = true;
             }
             else
             {
-                ModelState.AddModelError("OldPassword", "The password you provided is invalid");
+                this.ModelState.AddModelError("OldPassword", "The password you provided is invalid");
             }
-            if (ModelState.IsValid && passwordIsOk)
+            if (this.ModelState.IsValid && passwordIsOk)
             {
-                var newHashedPassword = GetHashedPassword(model.NewPassword);
-                userService.CurrentUser.ResetPassword(newHashedPassword);
+                var newHashedPassword = this.GetHashedPassword(model.NewPassword);
+                this.userService.CurrentUser.ResetPassword(newHashedPassword);
                 // TODO: we should have also a flash message saying it's been successful
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            return View();
+            return this.View();
         }
 
         private string GetHashedPassword(string password)
         {
-            return formsAuthenticationService.HashAndSalt(
-                userService.CurrentUser.UserName,
+            return this.formsAuthenticationService.HashAndSalt(
+                this.userService.CurrentUser.UserName,
                 password);
         }
 

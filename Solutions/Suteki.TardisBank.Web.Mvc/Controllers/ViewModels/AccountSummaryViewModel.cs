@@ -1,7 +1,7 @@
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.ViewModel
+namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
 {
+    using Suteki.TardisBank.Domain;
+
     public class AccountSummaryViewModel
     {
         public Child Child { get; set; }
@@ -9,7 +9,7 @@ namespace Suteki.TardisBank.ViewModel
 
         public bool IsParentView
         {
-            get { return Parent != null;  }
+            get { return this.Parent != null;  }
         }
     }
 }

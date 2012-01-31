@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace Suteki.TardisBank.ViewModel
+namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class WithdrawCashViewModel
     {
         [Required]

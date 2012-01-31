@@ -1,13 +1,11 @@
-using System.Web.Mvc;
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace Suteki.TardisBank.IoC
+namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
 {
-    using SharpArch.Web.Mvc.Castle;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
 
-    using Suteki.TardisBank.Services;
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
 
     public class MvcGooInstaller : IWindsorInstaller
     {

@@ -1,9 +1,9 @@
-using System;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace Suteki.TardisBank.Extensions
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System;
+    using System.Text;
+    using System.Text.RegularExpressions;
+
     public static class StringExtensions
     {
         public static string Join(this string[] values, string joinText)

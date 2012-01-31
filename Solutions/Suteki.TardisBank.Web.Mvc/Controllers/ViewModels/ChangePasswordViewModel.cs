@@ -1,8 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
-namespace Suteki.TardisBank.ViewModel
+namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public class ChangePasswordViewModel
     {

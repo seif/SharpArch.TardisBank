@@ -1,7 +1,7 @@
-using System.Web.Security;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System.Web.Security;
+
     public interface IFormsAuthenticationService
     {
         void SignOut();

@@ -1,11 +1,13 @@
-using System.Web.Mvc;
-using DotNetOpenAuth.OpenId.RelyingParty;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
-using Suteki.TardisBank.Services;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System.Web.Mvc;
+
+    using DotNetOpenAuth.OpenId.RelyingParty;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     public class OpenidController : Controller
     {
         readonly IFormsAuthenticationService formsAuthenticationService;
@@ -25,42 +27,42 @@ namespace Suteki.TardisBank.Controllers
 
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!this.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login", new {ReturnUrl = "Index"});
+                return this.RedirectToAction("Login", new {ReturnUrl = "Index"});
             }
 
-            return View("Index");
+            return this.View("Index");
         }
 
         public ActionResult Logout()
         {
-            formsAuthenticationService.SignOut();
-            return Redirect("~/Home");
+            this.formsAuthenticationService.SignOut();
+            return this.Redirect("~/Home");
         }
 
         public ActionResult Login()
         {
             // Stage 1: display login form to user
-            return View("Login");
+            return this.View("Login");
         }
 
         [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
-            var response = openIdService.GetResponse();
+            var response = this.openIdService.GetResponse();
 
             // Stage 2: Make the request to the openId provider
             if (response == null)
             {
                 try
                 {
-                    return openIdService.CreateRequest(Request.Form["openid_identifier"]);
+                    return this.openIdService.CreateRequest(this.Request.Form["openid_identifier"]);
                 }
                 catch (OpenIdException openIdException)
                 {
-                    ViewData["Message"] = openIdException.Message;
-                    return View("Login");
+                    this.ViewData["Message"] = openIdException.Message;
+                    return this.View("Login");
                 }
             }
             
@@ -68,21 +70,21 @@ namespace Suteki.TardisBank.Controllers
             switch (response.Status)
             {
                 case AuthenticationStatus.Authenticated:
-                    formsAuthenticationService.SetAuthCookie(response.ClaimedIdentifier, false);
+                    this.formsAuthenticationService.SetAuthCookie(response.ClaimedIdentifier, false);
 
-                    CreateNewParentIfTheyDontAlreadyExist(response);
+                    this.CreateNewParentIfTheyDontAlreadyExist(response);
 
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
-                        return Redirect(returnUrl);
+                        return this.Redirect(returnUrl);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 case AuthenticationStatus.Canceled:
-                    ViewData["Message"] = "Canceled at provider";
-                    return View("Login");
+                    this.ViewData["Message"] = "Canceled at provider";
+                    return this.View("Login");
                 case AuthenticationStatus.Failed:
-                    ViewData["Message"] = response.Exception.Message;
-                    return View("Login");
+                    this.ViewData["Message"] = response.Exception.Message;
+                    return this.View("Login");
             }
 
             throw new TardisBankException("Unknown AuthenticationStatus Response");
@@ -91,10 +93,10 @@ namespace Suteki.TardisBank.Controllers
         void CreateNewParentIfTheyDontAlreadyExist(IAuthenticationResponse response)
         {
             var userName = response.ClaimedIdentifier;
-            if (userService.GetUserByUserName(userName) != null) return;
+            if (this.userService.GetUserByUserName(userName) != null) return;
 
             var parent = new Parent(response.FriendlyIdentifierForDisplay, response.ClaimedIdentifier, "todo");
-            userService.SaveUser(parent);
+            this.userService.SaveUser(parent);
         }
     }
 }

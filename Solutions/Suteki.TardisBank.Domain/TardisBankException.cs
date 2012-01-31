@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
-namespace Suteki.TardisBank
+namespace Suteki.TardisBank.Domain
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class TardisBankException : Exception
     {

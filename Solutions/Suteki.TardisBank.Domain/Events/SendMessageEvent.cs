@@ -1,8 +1,7 @@
-using System;
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.Events
+namespace Suteki.TardisBank.Domain.Events
 {
+    using System;
+
     using SharpArch.Domain.Events;
 
     public class SendMessageEvent : IDomainEvent
@@ -21,8 +20,8 @@ namespace Suteki.TardisBank.Events
                 throw new ArgumentNullException("message");
             }
 
-            User = user;
-            Message = message;
+            this.User = user;
+            this.Message = message;
         }
     }
 }

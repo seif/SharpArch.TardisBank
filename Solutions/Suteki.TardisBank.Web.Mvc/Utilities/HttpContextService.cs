@@ -1,7 +1,10 @@
-using System.Web;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System.Web;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+
     public class HttpContextService : IHttpContextService
     {
         public string UserName

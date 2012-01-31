@@ -1,9 +1,10 @@
-using System.Web.Mvc;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Services;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+
     public class MenuController : Controller
     {
         readonly IUserService userService;
@@ -16,11 +17,11 @@ namespace Suteki.TardisBank.Controllers
         [ChildActionOnly]
         public ViewResult Index()
         {
-            var user = userService.CurrentUser;
+            var user = this.userService.CurrentUser;
 
-            if (user == null) return View("GuestMenu");
-            if (user is Parent) return View("ParentMenu", user as Parent);
-            if (user is Child) return View("ChildMenu", user as Child);
+            if (user == null) return this.View("GuestMenu");
+            if (user is Parent) return this.View("ParentMenu", user as Parent);
+            if (user is Child) return this.View("ChildMenu", user as Child);
 
             throw new TardisBankException("Unknown User type");
         }

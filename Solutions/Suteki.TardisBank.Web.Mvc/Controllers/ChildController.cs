@@ -1,12 +1,12 @@
-using System.Web.Mvc;
-using Suteki.TardisBank.Helpers;
-using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
-using Suteki.TardisBank.Services;
-using Suteki.TardisBank.ViewModel;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     public class ChildController : Controller
     {
         readonly IUserService userService;
@@ -19,26 +19,26 @@ namespace Suteki.TardisBank.Controllers
         [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Index()
         {
-            var parent = userService.CurrentUser as Parent;
+            var parent = this.userService.CurrentUser as Parent;
             if (parent == null)
             {
                 return StatusCode.NotFound;
             }
 
-            return View(parent);
+            return this.View(parent);
         }
 
         [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteChild(int id)
         {
             // id is the child's user name
-            var child = userService.GetUser(id) as Child;
+            var child = this.userService.GetUser(id) as Child;
             if (child == null)
             {
                 return StatusCode.NotFound;
             }
 
-            return View(new DeleteChildConfirmViewModel
+            return this.View(new DeleteChildConfirmViewModel
             {
                 ChildId = child.Id,
                 ChildName = child.Name
@@ -48,14 +48,14 @@ namespace Suteki.TardisBank.Controllers
         [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult DeleteChild(DeleteChildConfirmViewModel deleteChildConfirmViewModel)
         {
-            var parent = userService.CurrentUser as Parent;
+            var parent = this.userService.CurrentUser as Parent;
             if (parent == null || !parent.HasChild(deleteChildConfirmViewModel.ChildId))
             {
                 return StatusCode.NotFound;
             }
             parent.RemoveChild(deleteChildConfirmViewModel.ChildId);
-            userService.DeleteUser(deleteChildConfirmViewModel.ChildId);
-            return RedirectToAction("Index");
+            this.userService.DeleteUser(deleteChildConfirmViewModel.ChildId);
+            return this.RedirectToAction("Index");
         }
     }
 }

@@ -1,17 +1,17 @@
-using System;
-
-namespace Suteki.TardisBank.Model
+namespace Suteki.TardisBank.Domain
 {
+    using System;
+
     using SharpArch.Domain.DomainModel;
 
     public class Message : Entity
     {
         public Message(DateTime date, string text, User user)
         {
-            Date = date;
-            Text = text;
-            User = user;
-            HasBeenRead = false;
+            this.Date = date;
+            this.Text = text;
+            this.User = user;
+            this.HasBeenRead = false;
         }
 
         protected Message()
@@ -20,7 +20,7 @@ namespace Suteki.TardisBank.Model
 
         public virtual void Read()
         {
-            HasBeenRead = true;
+            this.HasBeenRead = true;
         }
 
         public virtual DateTime Date { get; protected set; }

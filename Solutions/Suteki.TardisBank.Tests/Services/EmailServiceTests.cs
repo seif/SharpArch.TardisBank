@@ -1,12 +1,12 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
-using Suteki.TardisBank.IoC;
-using Suteki.TardisBank.Services;
 
 // see this blog post for sending emails by gmail/google apps
 // http://mikehadlow.blogspot.com/2010/08/how-to-send-email-via-gmail-using-net.html
 namespace Suteki.TardisBank.Tests.Services
 {
+    using global::Suteki.TardisBank.Tasks;
+
     [TestFixture]
     public class EmailServiceTests
     {

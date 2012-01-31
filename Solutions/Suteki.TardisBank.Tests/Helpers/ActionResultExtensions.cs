@@ -1,10 +1,11 @@
 using System;
 using System.Runtime.Serialization;
 using System.Web.Mvc;
-using Suteki.TardisBank.Extensions;
 
 namespace Suteki.TardisBank.Tests.Helpers
 {
+    using global::Suteki.TardisBank.Web.Mvc.Utilities;
+
     public static class ActionResultExtensions
     {
         public static ViewResult ReturnsViewResult(this ActionResult result)

@@ -1,10 +1,10 @@
-using System;
-using System.Globalization;
-using System.Threading;
-using System.Web;
-
-namespace Suteki.TardisBank.Mvc
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
+    using System;
+    using System.Globalization;
+    using System.Threading;
+    using System.Web;
+
     public class UserLocaleModule : IHttpModule
     {
         public void Init(HttpApplication httpApplication)

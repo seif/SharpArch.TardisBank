@@ -1,9 +1,10 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.ViewModel
+namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using Suteki.TardisBank.Domain;
+
     public class AddScheduleViewModel
     {
         [Required]

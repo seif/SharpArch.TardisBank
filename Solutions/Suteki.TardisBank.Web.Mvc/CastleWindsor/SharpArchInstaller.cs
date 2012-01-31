@@ -11,8 +11,6 @@
     using SharpArch.NHibernate.Contracts.Repositories;
     using SharpArch.Web.Mvc.Castle;
 
-    using Suteki.TardisBank.IoC;
-
     public class SharpArchInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

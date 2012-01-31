@@ -1,12 +1,11 @@
-using System;
-using System.Web.Mvc;
-using Suteki.TardisBank.Helpers;
-using Suteki.TardisBank.IoC;
-using Suteki.TardisBank.Mvc;
-using Suteki.TardisBank.Services;
-
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
+    using System;
+    using System.Web.Mvc;
+
+    using Suteki.TardisBank.Tasks;
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     public class ScheduleRunnerController : Controller
     {
         readonly ISchedulerService schedulerService;
@@ -21,9 +20,9 @@ namespace Suteki.TardisBank.Controllers
         [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
         public ActionResult Execute(string id)
         {
-            if (id == null || configuration.ScheduleKey != id) return StatusCode.NotFound;
+            if (id == null || this.configuration.ScheduleKey != id) return StatusCode.NotFound;
 
-            schedulerService.ExecuteUpdates(DateTime.Now);
+            this.schedulerService.ExecuteUpdates(DateTime.Now);
             return StatusCode.Ok;
         }
     }

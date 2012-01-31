@@ -1,12 +1,12 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
 
-using Suteki.TardisBank.Model;
-
 namespace Suteki.TardisBank.Tests.Model
 {
     using SharpArch.NHibernate;
     using SharpArch.Testing.NUnit.NHibernate;
+
+    using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
     public class ParentTests : RepositoryTestsBase

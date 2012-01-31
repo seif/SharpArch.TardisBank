@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Tasks
 {
+    using System;
+    using System.Linq;
+
     using SharpArch.Domain.PersistenceSupport;
+
+    using Suteki.TardisBank.Domain;
 
     public interface IUserService
     {
@@ -39,15 +39,15 @@ namespace Suteki.TardisBank.Services
         {
             get 
             {
-                if (!context.UserIsAuthenticated) return null;
+                if (!this.context.UserIsAuthenticated) return null;
 
-                return this.GetUserByUserName(context.UserName);
+                return this.GetUserByUserName(this.context.UserName);
             }
         }
 
         public User GetUser(int userId)
         {
-            return userRepository.FindOne(userId);
+            return this.userRepository.FindOne(userId);
         }
 
         public User GetUserByUserName(string userName)
@@ -94,15 +94,15 @@ namespace Suteki.TardisBank.Services
 
         public bool IsNotChildOfCurrentUser(Child child)
         {
-            var parent = CurrentUser as Parent;
+            var parent = this.CurrentUser as Parent;
             return (child == null) || (parent == null) || (!parent.HasChild(child));
         }
 
         public void DeleteUser(int userId)
         {
-            var user = userRepository.FindOne(userId);
+            var user = this.userRepository.FindOne(userId);
 
-            userRepository.Delete(user);
+            this.userRepository.Delete(user);
         }
     }
 }

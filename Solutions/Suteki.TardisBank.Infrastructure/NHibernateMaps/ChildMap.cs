@@ -3,7 +3,7 @@
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Automapping.Alterations;
 
-    using Suteki.TardisBank.Model;
+    using Suteki.TardisBank.Domain;
 
     public class ChildMap : IAutoMappingOverride<Child>
     {

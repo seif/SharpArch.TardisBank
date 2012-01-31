@@ -3,7 +3,7 @@ namespace Suteki.TardisBank.Infrastructure.NHibernateMaps
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Automapping.Alterations;
 
-    using Suteki.TardisBank.Model;
+    using Suteki.TardisBank.Domain;
 
     public class TransactionMap : IAutoMappingOverride<Transaction>
     {

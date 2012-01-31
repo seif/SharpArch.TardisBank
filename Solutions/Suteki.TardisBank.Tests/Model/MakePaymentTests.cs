@@ -1,10 +1,11 @@
 // ReSharper disable InconsistentNaming
 using System;
 using NUnit.Framework;
-using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Tests.Model
 {
+    using global::Suteki.TardisBank.Domain;
+
     [TestFixture]
     public class MakePaymentTests
     {

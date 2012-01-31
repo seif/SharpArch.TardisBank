@@ -1,12 +1,13 @@
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using Suteki.TardisBank.Handlers;
-
-namespace Suteki.TardisBank.IoC
+namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     using SharpArch.Domain.Commands;
     using SharpArch.Domain.Events;
+
+    using Suteki.TardisBank.Tasks.EventHandlers;
 
     public class HandlersInstaller : IWindsorInstaller
     {

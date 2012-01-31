@@ -1,4 +1,4 @@
-namespace Suteki.TardisBank.Helpers
+namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
     public static class DateFormatter
     {

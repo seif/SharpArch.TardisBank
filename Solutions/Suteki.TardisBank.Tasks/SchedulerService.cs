@@ -1,12 +1,13 @@
-using System;
-using System.Linq;
-using Suteki.TardisBank.Model;
-
-namespace Suteki.TardisBank.Services
+namespace Suteki.TardisBank.Tasks
 {
+    using System;
+    using System.Linq;
+
     using NHibernate.Linq;
 
     using SharpArch.NHibernate;
+
+    using Suteki.TardisBank.Domain;
 
     public interface ISchedulerService
     {

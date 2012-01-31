@@ -1,18 +1,18 @@
-﻿using System;
-
-namespace Suteki.TardisBank.Model
+﻿namespace Suteki.TardisBank.Domain
 {
+    using System;
+
     using SharpArch.Domain.DomainModel;
 
     public class PaymentSchedule : Entity
     {
         public PaymentSchedule(DateTime nextRun, Interval interval, decimal amount, string description, Account account)
         {
-            NextRun = nextRun;
-            Interval = interval;
-            Amount = amount;
-            Description = description;
-            Account = account;
+            this.NextRun = nextRun;
+            this.Interval = interval;
+            this.Amount = amount;
+            this.Description = description;
+            this.Account = account;
         }
 
         protected PaymentSchedule()
@@ -28,16 +28,16 @@ namespace Suteki.TardisBank.Model
 
         public virtual void CalculateNextRunDate()
         {
-            switch (Interval)
+            switch (this.Interval)
             {
                 case Interval.Day:
-                    NextRun = NextRun.AddDays(1);
+                    this.NextRun = this.NextRun.AddDays(1);
                     break;
                 case Interval.Week:
-                    NextRun = NextRun.AddDays(7);
+                    this.NextRun = this.NextRun.AddDays(7);
                     break;
                 case Interval.Month:
-                    NextRun = NextRun.AddMonths(1);
+                    this.NextRun = this.NextRun.AddMonths(1);
                     break;
             }
         }

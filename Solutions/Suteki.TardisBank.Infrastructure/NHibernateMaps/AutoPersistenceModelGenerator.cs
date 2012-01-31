@@ -12,7 +12,7 @@
     using SharpArch.Domain.DomainModel;
     using SharpArch.NHibernate.FluentNHibernate;
 
-    using Suteki.TardisBank.Model;
+    using Suteki.TardisBank.Domain;
 
     #endregion
 

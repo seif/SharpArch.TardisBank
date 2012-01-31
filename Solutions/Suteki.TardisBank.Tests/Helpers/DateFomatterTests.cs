@@ -1,9 +1,10 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
-using Suteki.TardisBank.Helpers;
 
 namespace Suteki.TardisBank.Tests.Helpers
 {
+    using global::Suteki.TardisBank.Web.Mvc.Utilities;
+
     [TestFixture]
     public class DateFomatterTests 
     {

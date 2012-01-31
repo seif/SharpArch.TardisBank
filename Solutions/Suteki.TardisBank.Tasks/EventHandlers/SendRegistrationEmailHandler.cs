@@ -1,10 +1,11 @@
-using System;
-using Suteki.TardisBank.Events;
-using Suteki.TardisBank.Services;
-
-namespace Suteki.TardisBank.Handlers
+namespace Suteki.TardisBank.Tasks.EventHandlers
 {
+    using System;
+
     using SharpArch.Domain.Events;
+
+    using Suteki.TardisBank.Domain;
+    using Suteki.TardisBank.Domain.Events;
 
     public class SendRegistrationEmailHandler : IHandles<NewParentCreatedEvent>
     {
@@ -31,7 +32,7 @@ namespace Suteki.TardisBank.Handlers
             var url = "http://tardisbank.com/User/Activate/" + newParentCreatedEvent.Parent.ActivationKey;
             var body = string.Format(emailBodyTemplate, url);
 
-            emailService.SendEmail(toAddress, subject, body);
+            this.emailService.SendEmail(toAddress, subject, body);
         }
 
         const string emailBodyTemplate = 
