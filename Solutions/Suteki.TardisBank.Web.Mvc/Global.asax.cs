@@ -8,6 +8,8 @@
     using Castle.Windsor;
     using Castle.Windsor.Installer;
 
+    using CommonServiceLocator.WindsorAdapter;
+
     using log4net.Config;
 
     using Microsoft.Practices.ServiceLocation;
