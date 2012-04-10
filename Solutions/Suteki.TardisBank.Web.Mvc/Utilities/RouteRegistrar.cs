@@ -1,4 +1,4 @@
-﻿namespace Suteki.TardisBank.Web.Mvc.Controllers
+﻿namespace Suteki.TardisBank.Web.Mvc.Utilities
 {
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -6,7 +6,7 @@
     public class RouteRegistrar
     {
         public static void RegisterRoutesTo(RouteCollection routes) 
-        {
+        { 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 

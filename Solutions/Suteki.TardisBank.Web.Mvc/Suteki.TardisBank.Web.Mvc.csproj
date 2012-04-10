@@ -162,7 +162,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OpenidController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
-    <Compile Include="Controllers\RouteRegistrar.cs" />
+    <Compile Include="Utilities\RouteRegistrar.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ScheduleRunnerController.cs" />
     <Compile Include="Controllers\UserController.cs" />

@@ -12,6 +12,8 @@
 
     using SharpArch.Domain.Events;
 
+    using Suteki.TardisBank.Web.Mvc.Utilities;
+
     using log4net.Config;
 
     using Microsoft.Practices.ServiceLocation;
