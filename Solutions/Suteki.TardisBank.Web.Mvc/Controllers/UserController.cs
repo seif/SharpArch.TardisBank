@@ -43,7 +43,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             };
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
             return this.RegisterInternal(registrationViewModel, "Sorry, that email address has already been registered.",
@@ -111,7 +111,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Confirm");
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult Activate(string id)
         {
             // id is the activation key
@@ -135,7 +135,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Login", loginViewModel);
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             if (loginViewModel == null)
@@ -190,7 +190,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.RedirectToAction("Index", "Home");
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult AddChild()
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -203,7 +203,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddChild", GetRegistrationViewModel());
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult AddChild(RegistrationViewModel registrationViewModel)
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -220,7 +220,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
                 );
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult Messages()
         {
             var user = this.userService.CurrentUser;
@@ -231,7 +231,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Messages", user);
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult ReadMessage(int id)
         {
             var user = this.userService.CurrentUser;

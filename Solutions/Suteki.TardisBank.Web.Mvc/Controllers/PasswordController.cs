@@ -21,7 +21,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.emailService = emailService;
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult Forgot()
         {
             return this.View("Forgot", new ForgottenPasswordViewModel
@@ -30,7 +30,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult Forgot(ForgottenPasswordViewModel forgottenPasswordViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("Forgot", forgottenPasswordViewModel);

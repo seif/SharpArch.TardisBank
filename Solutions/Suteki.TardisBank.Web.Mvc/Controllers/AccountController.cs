@@ -17,7 +17,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.userService = userService;
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult MakePayment(int id)
         {
             // id is the child's user name
@@ -40,7 +40,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult MakePayment(MakePaymentViewModel makePaymentViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("MakePayment", makePaymentViewModel);
@@ -66,7 +66,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
         }
 
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult ParentView(int id)
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -81,7 +81,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult ChildView()
         {
             var child = this.userService.CurrentUser as Child;
@@ -95,7 +95,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult WithdrawCash()
         {
             var child = this.userService.CurrentUser as Child;
@@ -111,7 +111,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult WithdrawCash(WithdrawCashViewModel withdrawCashViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("WithdrawCash", withdrawCashViewModel);
@@ -153,7 +153,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("WithdrawCashConfirm", withdrawCashViewModel);
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult WithdrawCashForChild(int id)
         {
             // id is the child's user name
@@ -176,7 +176,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult WithdrawCashForChild(WithdrawCashForChildViewModel withdrawCashForChildViewModel)
         {
             if (!this.ModelState.IsValid) return this.View(withdrawCashForChildViewModel);

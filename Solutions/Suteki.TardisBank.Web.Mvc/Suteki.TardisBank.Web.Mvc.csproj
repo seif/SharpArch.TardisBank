@@ -75,20 +75,31 @@
       <HintPath>..\..\Packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="MvcContrib">
-      <HintPath>..\..\Packages\MvcContrib.Mvc3-ci.3.0.94.0\lib\MvcContrib.dll</HintPath>
+      <HintPath>..\..\Packages\MvcContrib.Mvc3-ci.3.0.100.0\lib\MvcContrib.dll</HintPath>
     </Reference>
     <Reference Include="MvcContrib.FluentHtml">
-      <HintPath>..\..\Packages\MvcContrib.Mvc3.FluentHtml-ci.3.0.94.0\lib\MvcContrib.FluentHtml.dll</HintPath>
+      <HintPath>..\..\Packages\MvcContrib.Mvc3.FluentHtml-ci.3.0.100.0\lib\MvcContrib.FluentHtml.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.7.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.0.0-RC2-612\lib\NET40\SharpArch.Domain.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\..\Packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\Packages\RavenDB.Client.1.0.971\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\Packages\RavenDB.Client.1.0.971\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArch.Domain, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\SharpArch.Domain.2.0.4\lib\NET40\SharpArch.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArch.RavenDB">
+      <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-alpha-0\lib\NET40\SharpArch.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Web.Mvc">
-      <HintPath>..\..\Packages\SharpArch.Web.Mvc.Castle.2.0.0-RC2-612\lib\NET40\SharpArch.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Web.Mvc.Castle.2.0.4\lib\NET40\SharpArch.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -141,7 +152,6 @@
     <Compile Include="CastleWindsor\SharpArchInstaller.cs" />
     <Compile Include="CastleWindsor\ControllersInstaller.cs" />
     <Compile Include="CastleWindsor\RepositoriesInstaller.cs" />
-    <Compile Include="CastleWindsor\QueriesInstaller.cs" />
     <Compile Include="CastleWindsor\HandlerInstaller.cs" />
     <Compile Include="CastleWindsor\MvcGooInstaller.cs" />
     <Compile Include="CastleWindsor\ServicesInstaller.cs" />

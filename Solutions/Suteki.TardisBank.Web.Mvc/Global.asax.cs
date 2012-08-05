@@ -18,14 +18,8 @@
 
     using Microsoft.Practices.ServiceLocation;
 
-    using SharpArch.NHibernate;
-    using SharpArch.NHibernate.Web.Mvc;
     using SharpArch.Web.Mvc.Castle;
     using SharpArch.Web.Mvc.ModelBinder;
-
-    using Suteki.TardisBank.Infrastructure.NHibernateMaps;
-    using Suteki.TardisBank.Web.Mvc.CastleWindsor;
-    using Suteki.TardisBank.Web.Mvc.Controllers;
 
     /// <summary>
     /// Represents the MVC Application
@@ -36,8 +30,6 @@
     /// </remarks>
     public class MvcApplication : System.Web.HttpApplication
     {
-        private WebSessionStorage webSessionStorage;
-
         /// <summary>
         /// Due to issues on IIS7, the NHibernate initialization must occur in Init().
         /// But Init() may be invoked more than once; accordingly, we introduce a thread-safe
@@ -47,12 +39,10 @@
         public override void Init()
         {
             base.Init();
-            this.webSessionStorage = new WebSessionStorage(this);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            NHibernateInitializer.Instance().InitializeNHibernateOnce(this.InitialiseNHibernateSessions);
         }
 
         protected void Application_Error(object sender, EventArgs e) 
@@ -97,17 +87,6 @@
             DomainEvents.ServiceLocator = windsorServiceLocator;
 
             ServiceLocator.SetLocatorProvider(() => windsorServiceLocator);
-        }
-
-        private void InitialiseNHibernateSessions()
-        {
-            NHibernateSession.ConfigurationCache = new NHibernateConfigurationFileCache();
-
-            NHibernateSession.Init(
-                this.webSessionStorage,
-                new[] { Server.MapPath("~/bin/Suteki.TardisBank.Infrastructure.dll") },
-                new AutoPersistenceModelGenerator().Generate(),
-                Server.MapPath("~/NHibernate.config"));
         }
     }
 }

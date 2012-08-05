@@ -17,7 +17,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.userService = userService;
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult AddSchedule(int id)
         {
             // id is the child's username
@@ -37,7 +37,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddSchedule", addScheduleViewModel);
         }
 
-        [HttpPost, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpPost]
         public ActionResult AddSchedule(AddScheduleViewModel addScheduleViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("AddSchedule", addScheduleViewModel);
@@ -61,7 +61,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddScheduleConfirm", addScheduleViewModel);
         }
 
-        [HttpGet, SharpArch.NHibernate.Web.Mvc.Transaction]
+        [HttpGet]
         public ActionResult RemoveSchedule(int id, int scheduleId)
         {
             // id is the child user name

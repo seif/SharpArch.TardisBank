@@ -7,7 +7,7 @@
 
     using Microsoft.Practices.ServiceLocation;
     using SharpArch.Domain.PersistenceSupport;
-    using SharpArch.NHibernate;
+    
 
     using global::Suteki.TardisBank.Web.Mvc.CastleWindsor;
 
@@ -17,17 +17,11 @@
         {
             IWindsorContainer container = new WindsorContainer();
 
-            container.Register(
-                    Component
-                        .For(typeof(IEntityDuplicateChecker))
-                        .ImplementedBy(typeof(EntityDuplicateChecker))
-                        .Named("entityDuplicateChecker"));
-
-            container.Register(
-                    Component
-                        .For(typeof(ISessionFactoryKeyProvider))
-                        .ImplementedBy(typeof(DefaultSessionFactoryKeyProvider))
-                        .Named("sessionFactoryKeyProvider"));
+            //container.Register(
+            //        Component
+            //            .For(typeof(IEntityDuplicateChecker))
+            //            .ImplementedBy(typeof(EntityDuplicateChecker))
+            //            .Named("entityDuplicateChecker"));
 
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }

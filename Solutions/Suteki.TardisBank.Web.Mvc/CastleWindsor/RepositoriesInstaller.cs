@@ -5,8 +5,8 @@ namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
     using Castle.Windsor;
 
     using SharpArch.Domain.PersistenceSupport;
-    using SharpArch.NHibernate;
-    using SharpArch.NHibernate.Contracts.Repositories;
+    using SharpArch.RavenDb;
+    using SharpArch.RavenDb.Contracts.Repositories;
 
     public class RepositoriesInstaller : IWindsorInstaller
     {
@@ -27,21 +27,16 @@ namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
         private static void AddGenericRepositoriesTo(IWindsorContainer container)
         {
             container.Register(
-                Component.For(typeof(INHibernateRepository<>))
-                    .ImplementedBy(typeof(NHibernateRepository<>))
-                    .Named("nhibernateRepositoryType")
-                    .Forward(typeof(IRepository<>)));
+                Component.For(typeof(IRavenDbRepository<>))
+                    .ImplementedBy(typeof(RavenDbRepository<>))
+                    .Named("ravenDbRepositoryType")
+                    .Forward(typeof(IRepository<>), typeof(ILinqRepository<>)));
             
             container.Register(
-                Component.For(typeof(INHibernateRepositoryWithTypedId<,>))
-                    .ImplementedBy(typeof(NHibernateRepositoryWithTypedId<,>))
-                    .Named("nhibernateRepositoryWithTypedId")
-                    .Forward(typeof(IRepositoryWithTypedId<,>)));
-            
-            container.Register(
-                Component.For(typeof(ILinqRepository<>))
-                    .ImplementedBy(typeof(LinqRepository<>))
-                    .Named("nhibernateLinqWithTypedId"));
+                Component.For(typeof(IRavenDbRepositoryWithTypedId<,>))
+                    .ImplementedBy(typeof(RavenDbRepositoryWithTypedId<,>))
+                    .Named("ravenDbRepositoryWithTypedId")
+                    .Forward(typeof(IRepositoryWithTypedId<,>) , typeof(ILinqRepositoryWithTypedId<,>)));
         }
     }
 }
