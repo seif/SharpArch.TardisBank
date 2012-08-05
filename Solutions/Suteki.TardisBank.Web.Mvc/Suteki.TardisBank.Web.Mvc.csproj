@@ -149,6 +149,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CastleWindsor\RavenDbInstaller.cs" />
     <Compile Include="CastleWindsor\SharpArchInstaller.cs" />
     <Compile Include="CastleWindsor\ControllersInstaller.cs" />
     <Compile Include="CastleWindsor\RepositoriesInstaller.cs" />
