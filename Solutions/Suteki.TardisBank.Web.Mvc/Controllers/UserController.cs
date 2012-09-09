@@ -3,6 +3,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     using System;
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
@@ -43,7 +45,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             };
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
             return this.RegisterInternal(registrationViewModel, "Sorry, that email address has already been registered.",
@@ -111,7 +113,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Confirm");
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult Activate(string id)
         {
             // id is the activation key
@@ -135,7 +137,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Login", loginViewModel);
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             if (loginViewModel == null)
@@ -183,7 +185,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Login", loginViewModel);
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult Logout()
         {
             this.formsAuthenticationService.SignOut();
@@ -203,7 +205,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddChild", GetRegistrationViewModel());
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult AddChild(RegistrationViewModel registrationViewModel)
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -231,8 +233,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("Messages", user);
         }
 
-        [HttpGet]
-        public ActionResult ReadMessage(int id)
+        [HttpGet, UnitOfWork]
+        public ActionResult ReadMessage(string id)
         {
             var user = this.userService.CurrentUser;
             if (user == null)

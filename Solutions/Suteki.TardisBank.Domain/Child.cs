@@ -5,7 +5,7 @@ namespace Suteki.TardisBank.Domain
 
     public class Child : User
     {
-        public Child(string name, string userName, string password, int parentId) : base(name, userName, password)
+        public Child(string name, string userName, string password, string parentId) : base(name, userName, password)
         {
             this.ParentId = parentId;
             this.Account = new Account();
@@ -16,7 +16,7 @@ namespace Suteki.TardisBank.Domain
         {
         }
 
-        public virtual int ParentId { get; set; }
+        public virtual string ParentId { get; set; }
         public virtual Account Account { get; set; }
 
         public virtual void ReceivePayment(decimal amount, string description)

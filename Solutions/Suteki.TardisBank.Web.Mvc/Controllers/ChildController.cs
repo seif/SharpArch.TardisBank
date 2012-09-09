@@ -2,6 +2,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
@@ -16,7 +18,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult Index()
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -28,8 +30,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View(parent);
         }
 
-        [HttpGet]
-        public ActionResult DeleteChild(int id)
+        [HttpGet, UnitOfWork]
+        public ActionResult DeleteChild(string id)
         {
             // id is the child's user name
             var child = this.userService.GetUser(id) as Child;
@@ -45,7 +47,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult DeleteChild(DeleteChildConfirmViewModel deleteChildConfirmViewModel)
         {
             var parent = this.userService.CurrentUser as Parent;

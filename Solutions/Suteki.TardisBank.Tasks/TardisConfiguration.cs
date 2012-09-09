@@ -7,12 +7,12 @@ namespace Suteki.TardisBank.Tasks
             // set some useful defaults here
             this.ScheduleKey = "run";
 
-            this.EmailSmtpServer = ""; // if this string is empty emails just don't get sent
+            this.EmailSmtpServer = "localhost"; // if this string is empty emails just don't get sent
             this.EmailEnableSsl = false;
             this.EmailPort = 25;
             this.EmailCredentialsUserName = ""; // if the username or password is blank, default credentials are used.
             this.EmailCredentialsPassword = "";
-            this.EmailFromAddress = "";
+            this.EmailFromAddress = "iam@seifattar.net";
 
             this.GoogleAnalyticsUaCode = "";
         }

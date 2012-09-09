@@ -10,11 +10,11 @@ namespace Suteki.TardisBank.Tasks
     public interface IUserService
     {
         User CurrentUser { get; }
-        User GetUser(int userId);
+        User GetUser(string userId);
         User GetUserByUserName(string userName);
         User GetUserByActivationKey(string activationKey);
         void SaveUser(User user);
-        void DeleteUser(int userId);
+        void DeleteUser(string userId);
         
         bool AreNullOrNotRelated(Parent parent, Child child);
         bool IsNotChildOfCurrentUser(Child child);
@@ -24,11 +24,11 @@ namespace Suteki.TardisBank.Tasks
     {
         readonly IHttpContextService context;
 
-        private readonly ILinqRepository<Parent> parentRepository;
+        private readonly ILinqRepositoryWithTypedId<Parent, string> parentRepository;
 
-        readonly ILinqRepository<User> userRepository;
+        readonly ILinqRepositoryWithTypedId<User, string> userRepository;
 
-        public UserService(IHttpContextService context, ILinqRepository<Parent> parentRepository, ILinqRepository<User> userRepository)
+        public UserService(IHttpContextService context, ILinqRepositoryWithTypedId<Parent,string> parentRepository, ILinqRepositoryWithTypedId<User, string> userRepository)
         {
             this.context = context;
             this.parentRepository = parentRepository;
@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Tasks
             }
         }
 
-        public User GetUser(int userId)
+        public User GetUser(string userId)
         {
             return this.userRepository.FindOne(userId);
         }
@@ -57,7 +57,7 @@ namespace Suteki.TardisBank.Tasks
                 throw new ArgumentNullException("userName");
             }
 
-            return this.userRepository.FindAll().FirstOrDefault(u => u.UserName == userName);
+            return this.userRepository.FindOne(User.UserIdFromUserName(userName));
         }
 
         public User GetUserByActivationKey(string activationKey)
@@ -98,7 +98,7 @@ namespace Suteki.TardisBank.Tasks
             return (child == null) || (parent == null) || (!parent.HasChild(child));
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUser(string userId)
         {
             var user = this.userRepository.FindOne(userId);
 

@@ -3,6 +3,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     using System;
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
@@ -30,7 +32,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult Forgot(ForgottenPasswordViewModel forgottenPasswordViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("Forgot", forgottenPasswordViewModel);

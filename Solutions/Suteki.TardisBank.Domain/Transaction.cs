@@ -4,13 +4,12 @@ namespace Suteki.TardisBank.Domain
 
     using SharpArch.Domain.DomainModel;
 
-    public class Transaction : Entity
+    public class Transaction
     {
-        public Transaction(string description, decimal amount, Account account)
+        public Transaction(string description, decimal amount)
         {
             this.Description = description;
             this.Amount = amount;
-            this.Account = account;
             this.Date = DateTime.Now.Date;
         }
 
@@ -20,8 +19,6 @@ namespace Suteki.TardisBank.Domain
 
         public virtual string Description { get; protected set; }
         public virtual decimal Amount { get; protected set; }
-
-        public virtual Account Account { get; protected set; }
 
         public virtual DateTime Date { get; protected set; }
     }

@@ -3,6 +3,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     using System;
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Utilities;
 
@@ -17,7 +19,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult Execute(string id)
         {
             if (id == null || this.configuration.ScheduleKey != id) return StatusCode.NotFound;

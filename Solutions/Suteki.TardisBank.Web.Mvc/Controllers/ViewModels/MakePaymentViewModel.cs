@@ -5,7 +5,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
     public class MakePaymentViewModel
     {
         [Required]
-        public int ChildId{ get; set; }
+        public string ChildId { get; set; }
 
         [Required]
         public string ChildName { get; set; }

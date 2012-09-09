@@ -89,12 +89,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.0.0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpArch.NHibernate, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="SharpArch.RavenDB">
-      <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-alpha-0\lib\NET40\SharpArch.RavenDB.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-RC-0\lib\NET40\SharpArch.RavenDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

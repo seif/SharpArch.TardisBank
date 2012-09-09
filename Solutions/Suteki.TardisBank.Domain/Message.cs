@@ -4,7 +4,7 @@ namespace Suteki.TardisBank.Domain
 
     using SharpArch.Domain.DomainModel;
 
-    public class Message : Entity
+    public class Message : EntityWithTypedId<string>
     {
         public Message(DateTime date, string text, User user)
         {

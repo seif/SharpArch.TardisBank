@@ -8,7 +8,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers.ViewModels
     public class AddScheduleViewModel
     {
         [Required]
-        public int ChildId{ get; set; }
+        public string ChildId{ get; set; }
 
         [Required]
         [Range(-1000000, 1000000)]

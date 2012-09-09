@@ -2,6 +2,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
@@ -30,7 +32,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View();
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult DeleteParent()
         {
             var parent = this.userService.CurrentUser as Parent;
@@ -39,9 +41,9 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
                 return StatusCode.NotFound;
             }
 
-            foreach (var childProxy in parent.Children)
+            foreach (var childId in parent.Children)
             {
-                this.userService.DeleteUser(childProxy.Id);
+                this.userService.DeleteUser(childId);
             }
             this.userService.DeleteUser(parent.Id);
 
@@ -54,7 +56,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View();
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
 

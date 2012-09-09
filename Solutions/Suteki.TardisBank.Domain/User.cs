@@ -9,7 +9,7 @@ namespace Suteki.TardisBank.Domain
 
     using Suteki.TardisBank.Domain.Events;
 
-    public abstract class User : Entity
+    public abstract class User : EntityWithTypedId<string>
     {
         public const int MaxMessages = 20;
 
@@ -25,11 +25,17 @@ namespace Suteki.TardisBank.Domain
 
         protected User(string name, string userName, string password)
         {
+            this.Id = UserIdFromUserName(userName);
             this.Name = name;
             this.UserName = userName;
             this.Password = password;
             this.Messages = new List<Message>();
             this.IsActive = false;
+        }
+
+        public static string UserIdFromUserName(string userName)
+        {
+            return string.Format("users/{0}", userName);
         }
 
         public virtual void SendMessage(string text)
@@ -47,8 +53,8 @@ namespace Suteki.TardisBank.Domain
             var oldestMessage = this.Messages.First();
             this.Messages.Remove(oldestMessage);
         }
-
-        public virtual void ReadMessage(int messageId)
+        
+        public virtual void ReadMessage(string messageId)
         {
             var message = this.Messages.SingleOrDefault(x => x.Id == messageId);
             if (message == null)

@@ -30,13 +30,15 @@ namespace Suteki.TardisBank.Web.Mvc.CastleWindsor
                 Component.For(typeof(IRavenDbRepository<>))
                     .ImplementedBy(typeof(RavenDbRepository<>))
                     .Named("ravenDbRepositoryType")
-                    .Forward(typeof(IRepository<>), typeof(ILinqRepository<>)));
+                    .Forward(typeof(IRepository<>), typeof(ILinqRepository<>))
+                    .LifestyleTransient());
             
             container.Register(
                 Component.For(typeof(IRavenDbRepositoryWithTypedId<,>))
                     .ImplementedBy(typeof(RavenDbRepositoryWithTypedId<,>))
                     .Named("ravenDbRepositoryWithTypedId")
-                    .Forward(typeof(IRepositoryWithTypedId<,>) , typeof(ILinqRepositoryWithTypedId<,>)));
+                    .Forward(typeof(IRepositoryWithTypedId<,>) , typeof(ILinqRepositoryWithTypedId<,>))
+                    .LifestyleTransient());
         }
     }
 }

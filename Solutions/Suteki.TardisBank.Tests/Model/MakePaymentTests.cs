@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 namespace Suteki.TardisBank.Tests.Model
 {
+    using SharpArch.Testing.NUnit.Helpers;
+
     using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
@@ -20,9 +22,11 @@ namespace Suteki.TardisBank.Tests.Model
         {
             parent = new Parent("Mike Hadlow", "mike@yahoo.com", "pwd");
             child = parent.CreateChild("Leo", "leohadlow", "xxx");
+            child.SetIdTo<string>("Users/Leohadlow");
 
             somebodyElse = new Parent("John Robinson", "john@gmail.com", "pwd");
             somebodyElsesChild = somebodyElse.CreateChild("Jim", "jimrobinson", "yyy");
+            somebodyElsesChild.SetIdTo<string>("Users/jimrobinson");
         }
 
         [Test]

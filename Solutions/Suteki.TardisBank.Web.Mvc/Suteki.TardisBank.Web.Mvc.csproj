@@ -92,14 +92,16 @@
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\Packages\RavenDB.Client.1.0.971\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch.Domain, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.0.4\lib\NET40\SharpArch.Domain.dll</HintPath>
+    <Reference Include="SharpArch.Domain">
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="SharpArch.RavenDB">
-      <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-alpha-0\lib\NET40\SharpArch.RavenDB.dll</HintPath>
+    <Reference Include="SharpArch.RavenDB, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-RC-0\lib\NET40\SharpArch.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch.Web.Mvc">
-      <HintPath>..\..\Packages\SharpArch.Web.Mvc.Castle.2.0.4\lib\NET40\SharpArch.Web.Mvc.dll</HintPath>
+    <Reference Include="SharpArch.Web.Mvc, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\SharpArch.Web.Mvc.Castle.2.1.0-RC-0\lib\NET40\SharpArch.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

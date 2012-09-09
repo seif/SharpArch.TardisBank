@@ -10,12 +10,12 @@ namespace Suteki.TardisBank.Domain
 
     public class Parent : User
     {
-        public virtual IList<Child> Children { get; protected set; }
+        public virtual IList<string> Children { get; protected set; }
         public virtual string ActivationKey { get; protected set; }
 
         public Parent(string name, string userName, string password) : base(name, userName, password)
         {
-            this.Children = new List<Child>();
+            this.Children = new List<string>();
         }
 
         protected Parent()
@@ -32,8 +32,7 @@ namespace Suteki.TardisBank.Domain
         public virtual Child CreateChild(string name, string userName, string password)
         {
             var child = new Child(name, userName, password, this.Id);
-            
-            this.Children.Add(child);
+            this.Children.Add(child.Id);
             return child;
         }
 
@@ -53,7 +52,7 @@ namespace Suteki.TardisBank.Domain
 
         public virtual bool HasChild(Child child)
         {
-            return this.Children.Any(x => x == child);
+            return this.Children.Any(x => x == child.Id);
         }
 
         public override void Activate()
@@ -62,14 +61,14 @@ namespace Suteki.TardisBank.Domain
             base.Activate();
         }
 
-        public virtual bool HasChild(int childId)
+        public virtual bool HasChild(string childId)
         {
-            return this.Children.Any(x => x.Id == childId);
+            return this.Children.Any(x => x == childId);
         }
 
-        public virtual void RemoveChild(int childId)
+        public virtual void RemoveChild(string childId)
         {
-            var childToRemove = this.Children.SingleOrDefault(x => x.Id == childId);
+            var childToRemove = this.Children.SingleOrDefault(x => x == childId);
             if (childToRemove != null)
             {
                 this.Children.Remove(childToRemove);

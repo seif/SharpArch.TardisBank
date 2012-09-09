@@ -3,6 +3,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     using System;
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
@@ -18,7 +20,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddSchedule(int id)
+        public ActionResult AddSchedule(string id)
         {
             // id is the child's username
             var child = this.userService.GetUser(id) as Child;
@@ -37,7 +39,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddSchedule", addScheduleViewModel);
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult AddSchedule(AddScheduleViewModel addScheduleViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("AddSchedule", addScheduleViewModel);
@@ -61,8 +63,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("AddScheduleConfirm", addScheduleViewModel);
         }
 
-        [HttpGet]
-        public ActionResult RemoveSchedule(int id, int scheduleId)
+        [HttpGet, UnitOfWork]
+        public ActionResult RemoveSchedule(string id, string scheduleId)
         {
             // id is the child user name
             var child = this.userService.GetUser(id) as Child;

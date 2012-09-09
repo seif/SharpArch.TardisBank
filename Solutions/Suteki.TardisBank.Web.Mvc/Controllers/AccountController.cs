@@ -3,11 +3,13 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     using System;
     using System.Web.Mvc;
 
+    using SharpArch.RavenDb.Web.Mvc;
+
     using Suteki.TardisBank.Domain;
     using Suteki.TardisBank.Tasks;
     using Suteki.TardisBank.Web.Mvc.Controllers.ViewModels;
     using Suteki.TardisBank.Web.Mvc.Utilities;
-
+    
     public class AccountController : Controller
     {
         readonly IUserService userService;
@@ -17,8 +19,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
-        public ActionResult MakePayment(int id)
+        [HttpGet, UnitOfWork]
+        public ActionResult MakePayment(string id)
         {
             // id is the child's user name
             if (id == null)
@@ -40,7 +42,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult MakePayment(MakePaymentViewModel makePaymentViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("MakePayment", makePaymentViewModel);
@@ -66,8 +68,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult ParentView(int id)
+        [HttpGet, UnitOfWork]
+        public ActionResult ParentView(string id)
         {
             var parent = this.userService.CurrentUser as Parent;
             var child = this.userService.GetUser(id) as Child;
@@ -81,7 +83,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult ChildView()
         {
             var child = this.userService.CurrentUser as Child;
@@ -95,7 +97,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult WithdrawCash()
         {
             var child = this.userService.CurrentUser as Child;
@@ -111,7 +113,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult WithdrawCash(WithdrawCashViewModel withdrawCashViewModel)
         {
             if (!this.ModelState.IsValid) return this.View("WithdrawCash", withdrawCashViewModel);
@@ -153,8 +155,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             return this.View("WithdrawCashConfirm", withdrawCashViewModel);
         }
 
-        [HttpGet]
-        public ActionResult WithdrawCashForChild(int id)
+        [HttpGet, UnitOfWork]
+        public ActionResult WithdrawCashForChild(string id)
         {
             // id is the child's user name
             if (id == null)
@@ -176,7 +178,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, UnitOfWork]
         public ActionResult WithdrawCashForChild(WithdrawCashForChildViewModel withdrawCashForChildViewModel)
         {
             if (!this.ModelState.IsValid) return this.View(withdrawCashForChildViewModel);
