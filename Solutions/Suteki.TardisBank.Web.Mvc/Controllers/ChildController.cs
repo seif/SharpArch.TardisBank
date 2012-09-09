@@ -2,6 +2,9 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
 {
     using System.Web.Mvc;
 
+    using Raven.Client;
+    using Raven.Client.Linq;
+
     using SharpArch.RavenDb.Web.Mvc;
 
     using Suteki.TardisBank.Domain;
@@ -13,9 +16,12 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     {
         readonly IUserService userService;
 
-        public ChildController(IUserService userService)
+        private readonly IDocumentSession session;
+
+        public ChildController(IUserService userService, IDocumentSession session)
         {
             this.userService = userService;
+            this.session = session;
         }
 
         [HttpGet, UnitOfWork]
@@ -27,7 +33,8 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
                 return StatusCode.NotFound;
             }
 
-            return this.View(parent);
+            var children = this.session.Query<Child>().Where(c => c.ParentId == parent.Id);
+            return this.View(children);
         }
 
         [HttpGet, UnitOfWork]

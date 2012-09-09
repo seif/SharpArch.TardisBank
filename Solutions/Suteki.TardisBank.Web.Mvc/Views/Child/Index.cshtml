@@ -1,4 +1,4 @@
-﻿@model Suteki.TardisBank.Domain.Parent
+﻿@model IEnumerable<Child>
 
 @{
     Layout = "~/Views/Shared/SiteLayout.cshtml";
@@ -6,14 +6,14 @@
 
 <h2>Your Childrens' Accounts</h2>
 
-@if(Model.Children.Count == 0){
+@if(!this.Model.Any()){
 <p>Please click on the button below to create accounts for your children.</p>
 } else {
 <p>This is list of your childrens' accounts. To view the account, click 'View Account'.</p>
 }
 <hr />
 <table>
-@foreach(var child in Model.Children) {
+@foreach(var child in Model) {
     <tr>
         <td><strong>@child.Name</strong></td>
         <td>@Html.ActionLink("View Account", "ParentView", "Account", new { id = child.Id }, null)</td>
