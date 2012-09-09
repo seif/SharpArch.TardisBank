@@ -22,7 +22,7 @@ namespace Suteki.TardisBank.Tests.Model
         {
             parent = new Parent("Mike Hadlow", "mike@yahoo.com", "pwd");
             child = parent.CreateChild("Leo", "leohadlow", "xxx");
-            child.SetIdTo<string>("Users/Leohadlow");
+            child.SetIdTo<string>("Users/leohadlow");
 
             somebodyElse = new Parent("John Robinson", "john@gmail.com", "pwd");
             somebodyElsesChild = somebodyElse.CreateChild("Jim", "jimrobinson", "yyy");

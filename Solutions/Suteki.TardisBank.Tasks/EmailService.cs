@@ -53,7 +53,7 @@ namespace Suteki.TardisBank.Tasks
                                                            this.configuration.EmailCredentialsPassword);
             }
 
-            client.Send(message);            
+            //client.Send(message);            
         }
     }
 }

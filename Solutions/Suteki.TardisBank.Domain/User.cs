@@ -35,7 +35,7 @@ namespace Suteki.TardisBank.Domain
 
         public static string UserIdFromUserName(string userName)
         {
-            return string.Format("users/{0}", userName);
+            return string.Format("Users/{0}", userName);
         }
 
         public virtual void SendMessage(string text)
