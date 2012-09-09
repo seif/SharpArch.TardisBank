@@ -2,14 +2,8 @@
 
 namespace Suteki.TardisBank.Tests.Model
 {
-    using System.Linq;
-
-    using NHibernate.Linq;
-
-    using SharpArch.NHibernate;
-    using SharpArch.Testing.NUnit.NHibernate;
-
     using System;
+    using System.Linq;
 
     using NUnit.Framework;
 
@@ -26,26 +20,36 @@ namespace Suteki.TardisBank.Tests.Model
         protected override void LoadTestData()
         {
             parent = new Parent("parent", "parent", "xxx");
-            NHibernateSession.Current.Save(parent);
+            session.Store(parent);
             this.someDate = new DateTime(2010, 4, 5);
-            NHibernateSession.Current.Save(CreateChildWithSchedule("one", 1M, this.someDate.AddDays(-2)));
-            NHibernateSession.Current.Save(CreateChildWithSchedule("two", 2M, this.someDate.AddDays(-1)));
-            NHibernateSession.Current.Save(CreateChildWithSchedule("three", 3M, this.someDate));
-            NHibernateSession.Current.Save(CreateChildWithSchedule("four", 4M, this.someDate.AddDays(1)));
-            NHibernateSession.Current.Save(CreateChildWithSchedule("five", 5M, this.someDate.AddDays(2)));
-            NHibernateSession.Current.Flush();
+            session.Store(CreateChildWithSchedule("one", 1M, this.someDate.AddDays(-2)));
+            session.Store(CreateChildWithSchedule("two", 2M, this.someDate.AddDays(-1)));
+            session.Store(CreateChildWithSchedule("three", 3M, this.someDate));
+            session.Store(CreateChildWithSchedule("four", 4M, this.someDate.AddDays(1)));
+            session.Store(CreateChildWithSchedule("five", 5M, this.someDate.AddDays(2)));
+            session.SaveChanges();
+        }
+
+        protected override void ClearTestData()
+        {
+            foreach (var user in session.Query<User>())
+            {
+                session.Delete(user);
+            }
+            session.SaveChanges();
+            documentStore.Dispose();
         }
 
         [Test]
         public void Should_be_able_to_query_all_pending_scheduled_payments()
         {
-            ISchedulerService schedulerService = new SchedulerService();
+            ISchedulerService schedulerService = new SchedulerService(session);
             schedulerService.ExecuteUpdates(someDate);
-            NHibernateSession.Current.Flush();
+            session.SaveChanges();
 
             // check results
 
-            var results = NHibernateSession.Current.Query<Child>().ToList();
+            var results = session.Query<Child>().ToList();
 
             results.Count().ShouldEqual(5);
 

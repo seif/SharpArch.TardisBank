@@ -38,6 +38,7 @@ namespace Suteki.TardisBank.Tests.Model
             session.Advanced.Defer(new DeleteCommandData { Key = parentId });
             session.Advanced.Defer(new DeleteCommandData { Key = childId });
             session.SaveChanges();
+            documentStore.Dispose();
         }
 
         [Test]
@@ -90,6 +91,8 @@ namespace Suteki.TardisBank.Tests.Model
 
         protected Exception ExceptionThrown;
 
+        protected DocumentStore documentStore;
+
         [SetUp]
         protected virtual void SetUp()
         {
@@ -99,11 +102,18 @@ namespace Suteki.TardisBank.Tests.Model
 
         private void InitializeSession()
         {
-            var documentStore = new DocumentStore();
-            documentStore.Url = "http://localhost:8080/";
-            documentStore.DefaultDatabase = "TardisBank.Tests";
+            this.documentStore = new DocumentStore()
+                {
+                    Conventions =
+                        {
+                            FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null
+                        }
+                };
 
-            session = documentStore.Initialize().OpenSession();
+            this.documentStore.Url = "http://localhost:8080/";
+            this.documentStore.DefaultDatabase = "TardisBank.Tests";
+
+            session = this.documentStore.Initialize().OpenSession();
             session.Advanced.AllowNonAuthoritativeInformation = false;
             session.Advanced.UseOptimisticConcurrency = true;
         }

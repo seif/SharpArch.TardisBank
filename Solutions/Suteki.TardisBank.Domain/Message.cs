@@ -10,7 +10,6 @@ namespace Suteki.TardisBank.Domain
         {
             this.Date = date;
             this.Text = text;
-            this.User = user;
             this.HasBeenRead = false;
         }
 
@@ -25,8 +24,6 @@ namespace Suteki.TardisBank.Domain
 
         public virtual DateTime Date { get; protected set; }
         public virtual string Text { get; protected set; }
-
-        public virtual User User { get; set; }
 
         public virtual bool HasBeenRead { get; protected set; }
     }

@@ -1,31 +1,37 @@
 // ReSharper disable InconsistentNaming
 
 namespace Suteki.TardisBank.Tests.Model
-{
-    using SharpArch.NHibernate;
-    using SharpArch.Testing.NUnit.NHibernate;
-
+{   
     using NUnit.Framework;
+
+    using SharpArch.RavenDb;
 
     using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
     public class MessageTests : RepositoryTestsBase
     {
-        private int userId;
+        private string userId;
 
         protected override void LoadTestData()
         {
             User user = new Parent("Dad", "mike@mike.com", "xxx");
-            NHibernateSession.Current.Save(user);
-            this.FlushSessionAndEvict(user);
+            session.Store(user);
             userId = user.Id;
+            this.FlushSessionAndEvict(user);
+        }
+
+        protected override void ClearTestData()
+        {
+            session.Delete(session.Load<Parent>(userId));
+            session.SaveChanges();
+            documentStore.Dispose();
         }
 
         [Test]
         public void Should_be_able_to_add_a_message_to_a_user()
         {
-            var parentRepository = new LinqRepository<Parent>();
+            var parentRepository = new RavenDbRepositoryWithTypedId<Parent,string>(session);
             User userToTestWith = parentRepository.Get(userId);
 
             userToTestWith.SendMessage("some message");
