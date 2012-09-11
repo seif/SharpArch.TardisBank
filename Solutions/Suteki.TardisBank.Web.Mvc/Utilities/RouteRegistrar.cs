@@ -12,14 +12,8 @@
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
+                "{controller}/{action}/{*id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }); // Parameter defaults
-
-            routes.MapRoute(
-                "WithRavenId", // Route name
-                "{controller}/{action}/{entity}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", entity = UrlParameter.Optional, id = UrlParameter.Optional } // Parameter defaults
-            );
         }
     }
 }
