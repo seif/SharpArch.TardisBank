@@ -8,9 +8,12 @@ namespace Suteki.TardisBank.Tests.Model
     using Raven.Abstractions.Commands;
     using Raven.Client;
     using Raven.Client.Document;
+    using Raven.Client.Indexes;
 
     using SharpArch.Domain.PersistenceSupport;
     using SharpArch.RavenDb;
+
+    using Suteki.TardisBank.Infrastructure;
 
     using global::Suteki.TardisBank.Domain;
 
@@ -102,11 +105,11 @@ namespace Suteki.TardisBank.Tests.Model
 
         private void InitializeSession()
         {
-            this.documentStore = new DocumentStore()
+            this.documentStore = new DocumentStore
                 {
                     Conventions =
                         {
-                            FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null
+                            DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites
                         }
                 };
 
@@ -114,6 +117,8 @@ namespace Suteki.TardisBank.Tests.Model
             this.documentStore.DefaultDatabase = "TardisBank.Tests";
 
             session = this.documentStore.Initialize().OpenSession();
+            IndexCreation.CreateIndexes(typeof(Child_ByPendingSchedule).Assembly, this.documentStore);
+
             session.Advanced.AllowNonAuthoritativeInformation = false;
             session.Advanced.UseOptimisticConcurrency = true;
         }

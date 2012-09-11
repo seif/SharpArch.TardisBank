@@ -7,6 +7,10 @@ namespace Suteki.TardisBank.Tests.Model
 
     using NUnit.Framework;
 
+    using Raven.Client.Linq;
+
+    using Suteki.TardisBank.Infrastructure;
+
     using global::Suteki.TardisBank.Domain;
     using global::Suteki.TardisBank.Tasks;
 
@@ -32,7 +36,7 @@ namespace Suteki.TardisBank.Tests.Model
 
         protected override void ClearTestData()
         {
-            foreach (var user in session.Query<User>())
+            foreach (var user in session.Query<User, All_Users>().Where(u => u.Name.In(new[] { "parent", "one", "two", "three", "four", "five" })))
             {
                 session.Delete(user);
             }

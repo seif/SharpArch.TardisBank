@@ -108,6 +108,8 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="All_Users.cs" />
+    <Compile Include="Child_ByPendingSchedule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Suteki.TardisBank.Domain\Suteki.TardisBank.Domain.csproj">

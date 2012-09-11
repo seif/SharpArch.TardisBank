@@ -4,10 +4,11 @@
 
     using SharpArch.Domain.DomainModel;
 
-    public class PaymentSchedule : EntityWithTypedId<string>
+    public class PaymentSchedule : EntityWithTypedId<int>
     {
-        public PaymentSchedule(DateTime nextRun, Interval interval, decimal amount, string description)
+        public PaymentSchedule(int id,DateTime nextRun, Interval interval, decimal amount, string description)
         {
+            this.Id = id;
             this.NextRun = nextRun;
             this.Interval = interval;
             this.Amount = amount;

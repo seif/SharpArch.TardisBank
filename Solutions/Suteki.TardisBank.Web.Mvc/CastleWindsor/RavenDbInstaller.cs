@@ -9,6 +9,8 @@
     using Raven.Client.Document;
     using Raven.Client.Indexes;
 
+    using Suteki.TardisBank.Infrastructure;
+
     public class RavenInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
@@ -33,7 +35,7 @@
         public static void DoInitialisation(IKernel kernel, IDocumentStore store)
         {
             store.Initialize();
-            //IndexCreation.CreateIndexes(typeof(Child_ByPendingSchedule).Assembly, store);
+            IndexCreation.CreateIndexes(typeof(Child_ByPendingSchedule).Assembly, store);
         }
     }
 }

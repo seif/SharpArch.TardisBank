@@ -6,6 +6,8 @@ namespace Suteki.TardisBank.Tests.Model
 
     using NUnit.Framework;
 
+    using Suteki.TardisBank.Infrastructure;
+
     using global::Suteki.TardisBank.Domain;
 
     [TestFixture]
@@ -52,15 +54,18 @@ namespace Suteki.TardisBank.Tests.Model
         [Test]
         public void Should_be_able_to_treat_Parents_and_Children_Polymorphically()
         {
-                var users = session.Query<User>().ToArray();
+                var users = session.Query<User, All_Users>().ToArray();
 
                 users.Length.ShouldEqual(5);
-            
-                users[0].GetType().Name.ShouldEqual("Parent");
-                users[1].GetType().Name.ShouldEqual("Child");
-                users[2].GetType().Name.ShouldEqual("Child");
-                users[3].GetType().Name.ShouldEqual("Parent");
-                users[4].GetType().Name.ShouldEqual("Child");
+
+                users.Any(u => u.Id == "Users/mike@yahoo.com").ShouldBeTrue();
+                users.Any(u => u.Id == "Users/leohadlow").ShouldBeTrue();
+                users.Any(u => u.Id == "Users/yunahadlow").ShouldBeTrue();
+                users.Any(u => u.Id == "Users/john@gmail.com").ShouldBeTrue();
+                users.Any(u => u.Id == "Users/jimrobinson").ShouldBeTrue();
+
+                users.Single(u => u.Id == "Users/mike@yahoo.com").ShouldBe<Parent>();
+                users.Single(u => u.Id == "Users/jimrobinson").ShouldBe<Child>();
         }
     }
 }

@@ -45,7 +45,8 @@ namespace Suteki.TardisBank.Domain
 
         public virtual void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
         {
-            this.PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description));
+            var nextId = PaymentSchedules.Any() ? PaymentSchedules.Max(x => x.Id) + 1 : 0;
+            this.PaymentSchedules.Add(new PaymentSchedule(nextId, startDate, interval, amount, description));
         }
 
         public virtual void TriggerScheduledPayments(DateTime now)
@@ -58,7 +59,7 @@ namespace Suteki.TardisBank.Domain
             }
         }
 
-        public virtual void RemovePaymentSchedule(string paymentScheduleId)
+        public virtual void RemovePaymentSchedule(int paymentScheduleId)
         {
             var scheduleToRemove = this.PaymentSchedules.SingleOrDefault(x => x.Id == paymentScheduleId);
             if (scheduleToRemove == null) return;

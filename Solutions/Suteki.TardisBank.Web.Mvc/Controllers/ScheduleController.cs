@@ -64,7 +64,7 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
         }
 
         [HttpGet, UnitOfWork]
-        public ActionResult RemoveSchedule(string id, string scheduleId)
+        public ActionResult RemoveSchedule(string id, int scheduleId)
         {
             // id is the child user name
             var child = this.userService.GetUser(id) as Child;
