@@ -83,7 +83,7 @@
       <HintPath>..\..\Packages\RavenDB.Client.1.0.972\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC3-631\lib\NET40\SharpArch.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -93,7 +93,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

@@ -84,17 +84,13 @@
       <HintPath>..\..\Packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC3-631\lib\NET40\SharpArch.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferencedAssemblies\ASP.NET MVC\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Routing">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>

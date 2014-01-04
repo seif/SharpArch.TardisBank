@@ -85,7 +85,7 @@
       <HintPath>..\..\Packages\RavenDB.Client.1.0.972\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC3-631\lib\NET40\SharpArch.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpArch.RavenDB">

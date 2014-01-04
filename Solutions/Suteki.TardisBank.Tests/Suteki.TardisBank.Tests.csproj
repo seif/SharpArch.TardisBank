@@ -80,18 +80,18 @@
       <HintPath>..\..\Packages\RavenDB.Client.1.0.972\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
-      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC-0\lib\NET40\SharpArch.Domain.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Domain.2.1.0-RC3-631\lib\NET40\SharpArch.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpArch.NHibernate">
-      <HintPath>..\..\Packages\SharpArch.NHibernate.2.1.0-RC-0\lib\NET40\SharpArch.NHibernate.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.NHibernate.2.1.0-RC3-631\lib\NET40\SharpArch.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpArch.RavenDB, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\SharpArch.RavenDB.2.1.0-RC-629\lib\NET40\SharpArch.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Testing.NUnit">
-      <HintPath>..\..\Packages\SharpArch.Testing.NUnit.2.1.0-RC-0\lib\NET40\SharpArch.Testing.NUnit.dll</HintPath>
+      <HintPath>..\..\Packages\SharpArch.Testing.NUnit.2.1.0-RC3-631\lib\NET40\SharpArch.Testing.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -107,7 +107,7 @@
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
