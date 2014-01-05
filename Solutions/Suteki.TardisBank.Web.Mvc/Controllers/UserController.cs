@@ -12,11 +12,13 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
     {
         readonly IUserService userService;
         readonly IFormsAuthenticationService formsAuthenticationService;
+        private readonly TardisConfiguration configuration;
 
-        public UserController(IUserService userService, IFormsAuthenticationService formsAuthenticationService)
+        public UserController(IUserService userService, IFormsAuthenticationService formsAuthenticationService, TardisConfiguration configuration)
         {
             this.userService = userService;
             this.formsAuthenticationService = formsAuthenticationService;
+            this.configuration = configuration;
         }
 
         [ChildActionOnly]
@@ -92,6 +94,12 @@ namespace Suteki.TardisBank.Web.Mvc.Controllers
                     registrationViewModel.Password);
 
                 var user = createUser(hashedPassword);
+
+                if (string.IsNullOrWhiteSpace(this.configuration.EmailSmtpServer))
+                {
+                    // if no smtp server configured, just activate user as no email is sent out.
+                    user.Activate();
+                }
 
                 this.userService.SaveUser(user);
 
